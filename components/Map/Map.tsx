@@ -19,7 +19,7 @@ const hoverMotion = {
 };
 
 const Map: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const motionRef = useRef(null);
   const isInView = useInView(motionRef);
   const motionRef2 = useRef(null);

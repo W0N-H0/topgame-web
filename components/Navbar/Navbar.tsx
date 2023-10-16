@@ -27,6 +27,11 @@ const navItems = [
     route: "/#maps",
     name: "오시는길",
   },
+  {
+    id: "item5",
+    route: "/#inquiry",
+    name: "온라인 상담",
+  },
 ];
 const navbarAnimation = {
   initial: {

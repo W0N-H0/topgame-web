@@ -24,7 +24,12 @@ body {
 
 h3 {
   font-weight: 700;
-  margin-top: 4px;
+  margin-top: 0.4em;
+}
+
+input {
+  padding: 0.7em;
+  border-radius: 5px;
 }
 
 .background {
@@ -106,4 +111,14 @@ h3 {
 
 .list::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 6px rgb(0, 0, 0);
+}
+
+/* 다음 주소API STYLES */
+[id^="__daum__layer_"] {
+  border-radius: 5px;
+  box-shadow: 6px 0px 200px 100px #192832d8;
+}
+
+.placeholder {
+  font-size: 10px;
 }
