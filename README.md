@@ -1,3 +1,5 @@
+### Next.js, TypeScript, Tailwind css를 이용하여 만든 업체 소개 웹 페이지 입니다.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
