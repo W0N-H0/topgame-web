@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
+import Navbar from "@/components/Navbar";
 
 interface Metadata {
   title: string;
@@ -21,7 +22,8 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html lang="ko">
       <body className={`${inter.className}`}>
-        <div />
+        <div className="bg" />
+        <Navbar />
         {children}
       </body>
     </html>
