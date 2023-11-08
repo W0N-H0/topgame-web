@@ -1,6 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import logo from "@/public/logo.png";
+import Image from "next/image";
 
 {
   /* Variable & Interface Declarations */
@@ -84,8 +86,15 @@ export default function Navbar() {
       variants={navbarAnimation}
       transition={{ duration: 0.35, ease: `linear` }}
     >
-      <h1 className="text-[2rem] font-bold tracking-tighter">
-        탑개미자원<span className="font-bold">®</span>
+      <h1 className="flex text-[2rem] font-bold tracking-tighter">
+        <Image
+          src={logo}
+          width={50}
+          height={30}
+          alt="antlogo"
+          className="w-14 h-full mr-1"
+        />
+        탑개미자원
       </h1>
 
       <ul className="hidden lg:flex justify-center items-center gap-x-[2vw] mr-[3rem]">
