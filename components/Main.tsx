@@ -10,6 +10,8 @@ const Main: React.FC = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const cursorPosition = useCursorTracker(targetRef);
+  console.log(cursorPosition);
+
   useEffect(() => {
     const videoElement = videoRef.current;
 
@@ -25,16 +27,27 @@ const Main: React.FC = () => {
     >
       <section className="flex flex-col absolute top-[25%] left-[15%] w-[70%] text-white">
         <h1 className="text-[1.4rem] xs:text-[3rem] font-bold">
-          고철, 비철, 기계철, 폐전선 등 <br /> 철거전문
+          고철, 비철, 기계철, 폐전선, 동 <br /> 철거전문
           <span className="font-normal"> 업체</span> <br />
-          탑개미자원 <span className="font-normal">입니다.</span>
+          <span className="text-[3.5rem]">탑</span>개미자원{" "}
+          <span className="font-normal">입니다.</span>
         </h1>
-        <h2 className="mt-10 xs:mt-3 text-[1rem] xs:text-[1.2rem]">
-          - 수도권 전지역 무료 출장
-          <br />- 상담 및 견적 대환영
-        </h2>
-        <div className="flex flex-col xs:flex-row w-full justify-start xs:justify-between text-[1.2rem] xs:text-[1.5rem]">
-          <div className="flex flex-col m-2 mt-10 xs:mt-20">
+        <div className="flex justify-between">
+          <h2 className="mt-10 xs:mt-3 text-[1rem] xs:text-[1.2rem]">
+            - 수도권 전지역 무료 출장
+            <br />- 상담 및 견적 대환영
+          </h2>
+          <div className="hidden lg:flex flex-col text-[1.2rem] xs:text-[1.5rem] mt-5 pr-40">
+            <span className="font-bold text-center">매입품목</span>
+            <span className="my-2">공장 / 관공서, 고철, 비철, 폐기물 등</span>
+            <button className="bg-gray-50 bg-opacity-75 text-black p-2 rounded-md text-[1rem] font-bold">
+              View Details...
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col xs:flex-row w-full justify-start text-[1.2rem] xs:text-[1.5rem]">
+          <div className="flex flex-col m-2 mt-10 xs:mt-5 font-bold">
             <span className="ml-2"> 매입문의 & 견적상담 </span>
             <div className="flex flex-col">
               <div className="flex items-center m-2">
@@ -43,15 +56,6 @@ const Main: React.FC = () => {
               <div className="flex items-center m-2">
                 <SiKakaotalk className="mr-2" /> 탑개미자원
               </div>
-            </div>
-          </div>
-          <div className="flex flex-col justify-center text-[1.2rem] xs:text-[1.7rem] font-bold mt-5 xs:-mt-20">
-            <p className="text-center">주요업무</p>
-            <div className="flex flex-col">
-              <span>공장 고철 비철 매입 전문 - 공장 거래처 전문입니다.</span>
-              <span>1</span>
-              <span>3</span>
-              <span>2</span>
             </div>
           </div>
         </div>
@@ -78,16 +82,16 @@ const Main: React.FC = () => {
       </video>
 
       <div
-        className="hidden xs:flex justify-center items-center bg-gray-50 rounded-full w-[6rem] h-[6rem] p-2 uppercase text-center text-[0.9rem] font-bold leading-tight duration-[50ms] ease-linear maincursor"
+        className="hidden xs:flex justify-center items-center bg-gray-50 rounded-full w-[6rem] h-[6rem] p-2 uppercase text-center text-[0.9rem] font-bold leading-tight duration-[70ms] maincursor "
         style={{
           transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)`,
         }}
       >
         <p>
           010 <br />
-          3351
+          4007
           <br />
-          6450
+          8524
         </p>
       </div>
     </div>

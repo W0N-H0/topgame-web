@@ -17,7 +17,13 @@ export const useCursorTracker = (
       const centerY: GLfloat = bounds.height / 2;
       const x: number = e.clientX - bounds.left - centerX;
       const y: number = e.clientY - bounds.top - centerY;
-      setCursorPos({ x, y });
+      const target = e.target as HTMLElement;
+      if (target.tagName === "A" || target.tagName === "BUTTON") {
+        // a태그나 버튼에 hover시 커서포지션 0,0으로 초기화
+        setCursorPos({ x: 0, y: 0 });
+      } else {
+        setCursorPos({ x, y });
+      }
     }
   };
 
@@ -27,7 +33,6 @@ export const useCursorTracker = (
 
   useEffect(() => {
     const targetElement: HTMLDivElement | null = targetRef.current;
-
     if (targetElement) {
       targetElement.addEventListener("mousemove", handleMouseMove);
       targetElement.addEventListener("mouseleave", handleMouseLeave);
