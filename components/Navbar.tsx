@@ -92,9 +92,10 @@ export default function Navbar() {
           width={50}
           height={30}
           alt="antlogo"
-          className="w-14 h-full mr-1"
+          className="w-14 h-full pt-1"
         />
-        탑개미자원
+        <span className="text-[2.4rem]">탑</span>{" "}
+        <span className="pt-2">개미자원</span>
       </h1>
 
       <ul className="hidden lg:flex justify-center items-center gap-x-[2vw] mr-[3rem]">
