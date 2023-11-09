@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import Navbar from "@/components/Navbar/Navbar";
+import { Pretendard } from "@/styles/font";
 
 interface Metadata {
   title: string;
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html lang="ko">
-      <body className={`${inter.className}`}>
+      <body className={Pretendard.className}>
         <div className="background" />
         <Navbar />
         {children}
