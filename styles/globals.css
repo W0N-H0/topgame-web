@@ -13,6 +13,7 @@
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,7 +24,7 @@ body {
   overflow-x: hidden;
 }
 
-.bg {
+.background {
   position: fixed;
   top: -50%;
   left: -50%;
@@ -49,4 +50,25 @@ body {
   color: white;
   width: 100%;
   height: 1rem;
+}
+
+/* 
+  ///// Navbar 스타일 /////
+*/
+.navItem:after {
+  content: "";
+  position: absolute;
+  transform: scaleX(0);
+  width: 100%;
+  height: 1.25px;
+  bottom: 0;
+  left: 0;
+  background-color: #f4f4f4;
+  mix-blend-mode: difference;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.navItem:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

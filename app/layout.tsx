@@ -22,7 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html lang="ko">
       <body className={`${inter.className}`}>
-        <div className="bg" />
+        <div className="background" />
         <Navbar />
         {children}
       </body>

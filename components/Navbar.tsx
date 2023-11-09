@@ -3,18 +3,16 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import logo from "@/public/logo.png";
 import Image from "next/image";
+import Link from "next/link";
 
-{
-  /* Variable & Interface Declarations */
-}
 const navItems = [
   {
     id: "item1",
-    name: "test1",
+    name: "홈",
   },
   {
     id: "item2",
-    name: "test2",
+    name: "업체소개",
   },
   {
     id: "item3",
@@ -37,9 +35,6 @@ export default function Navbar() {
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [navbarStyle, setNavbarStyle] = useState<Object>({});
 
-  {
-    /* Watches for scroll direction */
-  }
   useEffect(() => {
     let lastScrollY: number = window.scrollY;
     document.addEventListener("scroll", () => {
@@ -86,7 +81,10 @@ export default function Navbar() {
       variants={navbarAnimation}
       transition={{ duration: 0.35, ease: `linear` }}
     >
-      <h1 className="flex text-[2rem] font-bold tracking-tighter">
+      <Link
+        href="#home"
+        className="flex text-[2rem] font-bold tracking-tighter navItem"
+      >
         <Image
           src={logo}
           width={50}
@@ -94,9 +92,9 @@ export default function Navbar() {
           alt="antlogo"
           className="w-14 h-full pt-1"
         />
-        <span className="text-[2.4rem]">탑</span>{" "}
+        <span className="text-[2.4rem]">탑</span>
         <span className="pt-2">개미자원</span>
-      </h1>
+      </Link>
 
       <ul className="hidden lg:flex justify-center items-center gap-x-[2vw] mr-[3rem]">
         {navItems.map((item, index) => (

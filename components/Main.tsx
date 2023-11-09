@@ -10,7 +10,6 @@ const Main: React.FC = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const cursorPosition = useCursorTracker(targetRef);
-  console.log(cursorPosition);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -23,6 +22,7 @@ const Main: React.FC = () => {
   return (
     <div
       className="w-screen h-screen relative flex justify-center items-center overflow-hidden cursor-none"
+      id="home"
       ref={targetRef}
     >
       <section className="flex flex-col absolute top-[25%] left-[15%] w-[70%] text-white">
@@ -39,8 +39,9 @@ const Main: React.FC = () => {
           </h2>
           <div className="hidden lg:flex flex-col text-[1.2rem] xs:text-[1.5rem] mt-5 pr-40">
             <span className="font-bold text-center">매입품목</span>
-            <span className="my-2">공장 / 관공서, 고철, 비철, 폐기물 등</span>
-            <button className="bg-gray-50 bg-opacity-75 text-black p-2 rounded-md text-[1rem] font-bold">
+            <span className="mt-1">- 공장 / 관공서, 고철, 비철</span>
+            <span className="mt-1">- 철거공사, 폐기물처리 등</span>
+            <button className="bg-gray-50 bg-opacity-75 text-black mt-1 p-2 rounded-md text-[1rem]">
               View Details...
             </button>
           </div>
