@@ -8,14 +8,17 @@ import Link from "next/link";
 const navItems = [
   {
     id: "item1",
+    route: "#home",
     name: "홈",
   },
   {
     id: "item2",
+    route: "#about",
     name: "업체소개",
   },
   {
     id: "item3",
+    route: "#test3",
     name: "test3",
   },
 ];
@@ -28,6 +31,15 @@ const navbarAnimation = {
     opacity: 0,
     translateY: "-50vh",
   },
+};
+
+const hoverMotion = {
+  transition: {
+    type: "spring",
+    stiffness: 700,
+    damping: 15,
+  },
+  whileHover: { scale: 1.2 },
 };
 
 export default function Navbar() {
@@ -81,31 +93,34 @@ export default function Navbar() {
       variants={navbarAnimation}
       transition={{ duration: 0.35, ease: `linear` }}
     >
-      <Link
-        href="#home"
-        className="flex text-[2rem] font-bold tracking-tighter navItem"
-      >
-        <Image
-          src={logo}
-          width={50}
-          height={30}
-          alt="antlogo"
-          className="w-14 h-full pt-1"
-        />
-        <span className="text-[2.4rem]">탑</span>
-        <span className="pt-2">개미자원</span>
+      <Link href="#home" className="navItem">
+        <motion.div
+          {...hoverMotion}
+          className="flex text-[2rem] font-bold tracking-tighter"
+        >
+          <Image
+            src={logo}
+            width={50}
+            height={30}
+            alt="antlogo"
+            className="w-14 h-full pt-1"
+          />
+          <span className="text-[2.4rem]">탑</span>
+          <span className="pt-2">개미자원</span>
+        </motion.div>
       </Link>
 
       <ul className="hidden lg:flex justify-center items-center gap-x-[2vw] mr-[3rem]">
         {navItems.map((item, index) => (
-          <li
+          <motion.li
+            {...hoverMotion}
             className="flex justify-center items-center cursor-pointer h-[25px] px-[1rem]"
             key={index}
           >
             <p className="navItem relative text-center font-medium">
               {item.name}
             </p>
-          </li>
+          </motion.li>
         ))}
       </ul>
 
