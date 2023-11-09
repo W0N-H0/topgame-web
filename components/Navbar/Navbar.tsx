@@ -18,8 +18,13 @@ const navItems = [
   },
   {
     id: "item3",
-    route: "#test3",
-    name: "test3",
+    route: "#business",
+    name: "매입품목",
+  },
+  {
+    id: "item4",
+    route: "#map",
+    name: "오시는길",
   },
 ];
 const navbarAnimation = {
@@ -34,11 +39,6 @@ const navbarAnimation = {
 };
 
 const hoverMotion = {
-  transition: {
-    type: "spring",
-    stiffness: 700,
-    damping: 15,
-  },
   whileHover: { scale: 1.2 },
 };
 
@@ -106,7 +106,7 @@ export default function Navbar() {
             className="w-14 h-full pt-1"
           />
           <span className="text-[2.4rem]">탑</span>
-          <span className="pt-2">개미자원</span>
+          <span className="pl-1 pt-2">개미자원</span>
         </motion.div>
       </Link>
 
