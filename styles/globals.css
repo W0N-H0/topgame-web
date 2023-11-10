@@ -66,3 +66,23 @@ body {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+/* 
+  ///// button 스타일 /////
+*/
+.buttonEffect:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 200%;
+  background-color: rgba(31, 41, 55, 0.95);
+  transform: translateY(100%);
+  transition: transform 0.35s ease-in-out;
+}
+
+.buttonEffect:hover::after {
+  transform: translateY(0%);
+}
