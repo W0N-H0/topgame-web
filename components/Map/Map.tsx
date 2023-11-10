@@ -1,7 +1,7 @@
 "use client";
 import MapContents from "./MapContents";
-import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 declare global {
   interface Window {
@@ -19,6 +19,9 @@ const hoverMotion = {
 };
 
 const Map: React.FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
   const mapScript = document.createElement("script");
   mapScript.async = true;
   mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_API_KEY}&autoload=false&libraries=services,clusterer,drawing`;
@@ -48,7 +51,7 @@ const Map: React.FC = () => {
 
         // 커스텀 오버레이 생성
         const content =
-          '<div class="p-2 mt-7 text-[0.85rem] text-gray-600 font-bold">탑개미자원</div>';
+          '<div class="p-2 mt-8 text-[0.85rem] text-gray-600 font-bold"><a href="https://map.naver.com/p/entry/place/36760258?lng=126.7151554&lat=37.6977313&placePath=%2Fhome%3Fentry%3Dplt&c=15.00,0,0,0,dh" target="_blank">탑개미자원</a></div>';
         const overlay = new window.kakao.maps.CustomOverlay({
           content: content,
           map: map,
@@ -65,13 +68,18 @@ const Map: React.FC = () => {
   }, []);
 
   return (
-    <motion.div className="flex justify-center mt-10">
+    <motion.div className="flex justify-center mt-10 ">
       <MapContents />
+
       <motion.div
         {...hoverMotion}
+        ref={ref}
+        initial={{ x: "30vw" }}
+        animate={{ x: isInView ? 0 : "30vw" }}
+        transition={{ duration: 0.7 }}
         id="map"
-        style={{ width: "40%", height: "60vh", borderRadius: "10px" }}
-        className="shadow-2xl shadow-gray500/20 mx-4"
+        style={{ width: "37%", height: "60vh", borderRadius: "10px" }}
+        className="shadow-2xl shadow-gray500/20 ml-20"
       />
     </motion.div>
   );

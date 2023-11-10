@@ -1,6 +1,7 @@
 "use client";
 import { IoCopyOutline } from "react-icons/io5";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
 
@@ -13,16 +14,10 @@ const hoverMotion = {
   whileHover: { scale: 1.2 },
 };
 
-// 버튼 애니메이션 효과
-const buttonVariants = {
-  rest: { height: 0, opacity: 1 },
-  hover: { height: "auto", opacity: 0.8 },
-};
-const buttonVariants2 = {
-  hover: { height: "auto", opacity: 0.8, color: "white" },
-};
-
 const MapContents: React.FC = () => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(ref);
+
   const address1 = "경기도 고양시 일산서구 가좌동 605번지";
   const address2 = "경기도 고양시 일산서구 송파로 174-1";
 
@@ -32,8 +27,14 @@ const MapContents: React.FC = () => {
     });
   };
   return (
-    <section className="w-full md:w-[30vw] flex flex-col justify-between items-start xl:items-center my-10 mx-2">
-      <div className="flex flex-col">
+    <motion.section
+      ref={ref}
+      initial={{ x: "-30vw" }}
+      animate={{ x: isInView ? 0 : "-30vw" }}
+      transition={{ duration: 0.7 }}
+      className="w-full md:w-[30vw] flex flex-col justify-between items-start xl:items-center my-10 mx-2"
+    >
+      <div className="flex flex-col w-full">
         <span className="text-[1.5em] md:text-[3em] leading-[1.2] font-medium mb-3">
           위치
         </span>
@@ -65,7 +66,7 @@ const MapContents: React.FC = () => {
           네비게이션
         </span>
         <span className="mb-3">
-          하단 버튼을 클릭하여 네이게이션을 이용해보세요.
+          길찾기 버튼을 클릭하여 네이게이션을 이용해보세요.
         </span>
 
         <button className="buttonEffect flex justify-center relative w-[30%] rounded-md border-[1px] p-2 border-black text-center text-[0.75em] md:text-[1em] font-bold overflow-y-hidden z-2 transition-colors delay-0 hover:delay-[175ms] duration-200 hover:text-white">
@@ -77,7 +78,7 @@ const MapContents: React.FC = () => {
           </Link>
         </button>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
