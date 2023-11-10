@@ -23,7 +23,7 @@ const navItems = [
   },
   {
     id: "item4",
-    route: "#map",
+    route: "#maps",
     name: "오시는길",
   },
 ];
@@ -117,9 +117,12 @@ export default function Navbar() {
             className="flex justify-center items-center cursor-pointer h-[25px] px-[1rem]"
             key={index}
           >
-            <p className="navItem relative text-center font-medium">
+            <Link
+              href={item.route}
+              className="navItem relative text-center font-medium"
+            >
               {item.name}
-            </p>
+            </Link>
           </motion.li>
         ))}
       </ul>

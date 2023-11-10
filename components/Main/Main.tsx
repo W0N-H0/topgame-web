@@ -47,10 +47,10 @@ const Main: React.FC = () => {
           </h2>
           <div className="hidden lg:flex flex-col text-[1.4rem] xs:text-[1.7rem] mt-5 pr-48">
             <span className="font-bold text-center">매입품목</span>
-            <span className="mt-1 text-[1.1rem]">
+            <span className="mt-1 text-[1.3rem]">
               - 공장 / 관공서, 고철, 비철
             </span>
-            <span className="mt-1 text-[1.1rem]">
+            <span className="mt-1 text-[1.3rem]">
               - 철거공사, 폐기물처리 등
             </span>
             <motion.button
