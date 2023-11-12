@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import logo from "@/public/logo.png";
+import logo_black from "@/public/logo_black.png";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -99,7 +100,7 @@ export default function Navbar() {
           className="flex text-[2rem] font-bold tracking-tighter"
         >
           <Image
-            src={logo}
+            src={Object.keys(navbarStyle).length !== 0 ? logo_black : logo}
             width={50}
             height={30}
             alt="antlogo"
