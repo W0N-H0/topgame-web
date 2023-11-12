@@ -32,14 +32,16 @@ const MapContents: React.FC = () => {
       initial={{ x: "-30vw" }}
       animate={{ x: isInView ? 0 : "-30vw" }}
       transition={{ duration: 0.7 }}
-      className="w-full md:w-[30vw] flex flex-col justify-between items-start xl:items-center my-10 mx-2"
+      className="w-full md:w-[34vw] flex flex-col justify-between items-start xl:items-center my-10 mx-2"
     >
       <div className="flex flex-col w-full">
         <span className="text-[1.5em] md:text-[3em] leading-[1.2] font-medium mb-3">
-          위치
+          · 위치
         </span>
-        <span className="text-[1.3rem] mb-3">상호명 : 탑개미자원</span>
-        <div className="flex">
+        <span className="text-[1.1em] lg:text-[1.35em] mb-3">
+          상호명 : 탑개미자원
+        </span>
+        <div className="flex text-[1em] lg:text-[1.2em]">
           <span>경기도 고양시 일산서구 가좌동 605번지</span>
           <motion.button
             {...hoverMotion}
@@ -49,7 +51,7 @@ const MapContents: React.FC = () => {
             <IoCopyOutline />
           </motion.button>
         </div>
-        <div className="flex">
+        <div className="flex text-[1em] lg:text-[1.2em]">
           <span className="">경기도 고양시 일산서구 송파로 174-1</span>
           <motion.button
             {...hoverMotion}
@@ -63,9 +65,9 @@ const MapContents: React.FC = () => {
 
       <div className="w-full md:w-[30vw] flex flex-col justify-end items-end">
         <span className="flex text-[1.5em] md:text-[3em] leading-[1.2] font-medium mb-3 mt-10">
-          네비게이션
+          네비게이션 ·
         </span>
-        <span className="mb-3">
+        <span className="mb-3 text-[1em] lg:text-[1.25em]">
           길찾기 버튼을 클릭하여 네이게이션을 이용해보세요.
         </span>
 

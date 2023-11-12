@@ -68,20 +68,24 @@ const Map: React.FC = () => {
   }, []);
 
   return (
-    <motion.div className="flex justify-center mt-10 ">
-      <MapContents />
-
-      <motion.div
-        {...hoverMotion}
-        ref={ref}
-        initial={{ x: "30vw" }}
-        animate={{ x: isInView ? 0 : "30vw" }}
-        transition={{ duration: 0.7 }}
-        id="map"
-        style={{ width: "37%", height: "60vh", borderRadius: "10px" }}
-        className="shadow-2xl shadow-gray500/20 ml-20"
-      />
-    </motion.div>
+    <section className="w-screen py-[4vw] px-[5.4vw] xl:px-[8em]">
+      <div className="uppercase text-[2em] md:text-[3.5em] leading-[0.95] font-semibold">
+        <h1>WAY TO COME</h1>
+      </div>
+      <motion.div className="flex justify-between mt-10 mx-10">
+        <MapContents />
+        <motion.div
+          {...hoverMotion}
+          ref={ref}
+          initial={{ x: "30vw" }}
+          animate={{ x: isInView ? 0 : "30vw" }}
+          transition={{ duration: 0.7 }}
+          id="map"
+          style={{ width: "40vw", height: "60vh", borderRadius: "10px" }}
+          className="shadow-[0px_22px_70px_4px_rgba(0,0,0,0.46)]"
+        />
+      </motion.div>
+    </section>
   );
 };
 
