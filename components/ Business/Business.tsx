@@ -1,25 +1,32 @@
 "use client";
 import { useCursorTracker } from "@/hooks/useCursorTracker";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+
 import BusinessItems from "./BusinessItems";
 
 const Business: React.FC = () => {
   const targetRef = useRef(null);
   const cursorPosition = useCursorTracker(targetRef);
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const motionRef = useRef(null);
+  const isInView = useInView(motionRef);
 
   const handleHoverChange = (newIsHovered: boolean): boolean => {
     setIsHovered(newIsHovered);
     return true;
   };
 
-  useEffect(() => {
-    console.log(isHovered);
-  }, [isHovered]);
-
   return (
     <>
-      <main className="w-screen pb-[4vw] px-[5.4vw] xl:px-[8em]">
+      <motion.main
+        id="business"
+        ref={motionRef}
+        initial={{ x: "-30vw" }}
+        animate={{ x: isInView ? 0 : "-30vw" }}
+        transition={{ duration: 0.75 }}
+        className="w-screen pb-[4vw] px-[5.4vw] xl:px-[8em]"
+      >
         <section className="mb-[6em] h-[0.05em] w-full bg-black"></section>
 
         <section className="mb-[3em] md:mb-[5em]">
@@ -29,8 +36,8 @@ const Business: React.FC = () => {
         </section>
 
         <section
-          className="flex justify-center items-center cursor-none"
           ref={targetRef}
+          className="flex justify-center items-center cursor-none"
         >
           <BusinessItems
             isHovered={isHovered}
@@ -47,7 +54,7 @@ const Business: React.FC = () => {
             {isHovered === false ? "Drag" : ""}
           </div>
         </section>
-      </main>
+      </motion.main>
     </>
   );
 };

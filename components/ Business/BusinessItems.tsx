@@ -24,13 +24,13 @@ const businesstItems: IBusinessItem[] = [
   },
   {
     title: "비철",
-    src: "/assets/steel.png",
+    src: "/assets/비철2.jpg",
     alt: "비철 Logo",
     body: `각종 비철류, 동, 구리, 알루미늄, 스테인리스 등`,
   },
   {
     title: "컴퓨터/전자기기",
-    src: "/assets/steel.png",
+    src: "/assets/컴퓨터2.jpg",
     alt: "컴퓨터/전자기기Logo",
     body: `못쓰는 컴퓨터 본체, 모니터, 전자기기 등`,
   },
