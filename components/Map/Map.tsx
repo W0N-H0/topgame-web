@@ -1,7 +1,7 @@
 "use client";
 import MapContents from "./MapContents";
 import { motion, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -19,8 +19,11 @@ const hoverMotion = {
 };
 
 const Map: React.FC = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref);
+  const [isMobile, setIsMobile] = useState(false);
+  const motionRef = useRef(null);
+  const isInView = useInView(motionRef);
+  const motionRef2 = useRef(null);
+  const isInView2 = useInView(motionRef2);
 
   const mapScript = document.createElement("script");
   mapScript.async = true;
@@ -67,22 +70,56 @@ const Map: React.FC = () => {
     return () => mapScript.removeEventListener("load", onLoadKakaoMap);
   }, []);
 
+  // 모바일 여부를 판단하는 useEffect
+  // kakao map에서 tailwind CSS가 적용이 안되는 이슈로 width size를 통해 모바일여부 판별
+  useEffect(() => {
+    function handleResize() {
+      const windowWidth = window.innerWidth;
+      if (windowWidth <= 475) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    }
+
+    // 페이지가 처음 로드될 때 호출하여 초기 상태를 설정합니다.
+    handleResize();
+
+    // 윈도우의 리사이즈 이벤트를 감지하고 화면 크기 변화에 따라 isMobile 상태를 업데이트합니다.
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      // 컴포넌트가 언마운트될 때, 리사이즈 이벤트 리스너를 제거합니다.
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <section className="w-screen py-[4vw] px-[5.4vw] xl:px-[8em]">
-      <div className="uppercase text-[2em] md:text-[3.5em] leading-[0.95] font-semibold">
+    <section id="maps" className="w-screen py-[4em] px-[5.4vw] xl:px-[8em]">
+      <motion.div
+        ref={motionRef2}
+        initial={{ x: "-30vw" }}
+        animate={{ x: isInView2 ? 0 : "-30vw" }}
+        transition={{ duration: 0.75 }}
+        className="uppercase text-[2em] md:text-[3.5em] leading-[0.95] font-semibold"
+      >
         <h1>WAY TO COME</h1>
-      </div>
-      <motion.div className="flex justify-between mt-10 mx-10">
+      </motion.div>
+      <motion.div className="flex flex-col xs:flex-row justify-between m-4 xs:m-10">
         <MapContents />
         <motion.div
           {...hoverMotion}
-          ref={ref}
+          ref={motionRef}
           initial={{ x: "30vw" }}
           animate={{ x: isInView ? 0 : "30vw" }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.75 }}
           id="map"
-          style={{ width: "40vw", height: "60vh", borderRadius: "10px" }}
-          className="shadow-[0px_22px_70px_4px_rgba(0,0,0,0.46)]"
+          style={{
+            width: isMobile ? "100%" : "40vw",
+            height: isMobile ? "40vh" : "60vh",
+            borderRadius: "10px",
+          }}
+          className="shadow-[6px_0px_45px_20px_#192832D8]"
         />
       </motion.div>
     </section>
