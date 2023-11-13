@@ -11,7 +11,7 @@ export default function Home() {
       <Map />
       <Business />
       <Footer />
-      <Loader />
+      <Loader isAboutPage={false} />
     </div>
   );
 }

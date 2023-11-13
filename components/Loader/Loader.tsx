@@ -26,7 +26,7 @@ const loaderHeader = {
   },
 };
 
-const Loader: React.FC = () => {
+const Loader: React.FC<{ isAboutPage: boolean }> = ({ isAboutPage }) => {
   return (
     <motion.div
       variants={loader}
@@ -42,7 +42,13 @@ const Loader: React.FC = () => {
     >
       <h1 className="text-[8vw]">
         <p className="font-bold leading-tight">
-          탑개미자원<span className="text-[3vw]">®</span>
+          {isAboutPage ? (
+            <>업체 소개</>
+          ) : (
+            <>
+              탑개미자원<span className="text-[3vw]">®</span>
+            </>
+          )}
         </p>
         <motion.div
           variants={loaderHeader}
