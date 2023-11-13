@@ -9,22 +9,22 @@ import Link from "next/link";
 const navItems = [
   {
     id: "item1",
-    route: "#home",
+    route: "/#home",
     name: "홈",
   },
   {
     id: "item2",
-    route: "#about",
+    route: "/about",
     name: "업체소개",
   },
   {
     id: "item3",
-    route: "#business",
+    route: "/#business",
     name: "매입품목",
   },
   {
     id: "item4",
-    route: "#maps",
+    route: "/#maps",
     name: "오시는길",
   },
 ];
@@ -94,7 +94,7 @@ export default function Navbar() {
       variants={navbarAnimation}
       transition={{ duration: 0.35, ease: `linear` }}
     >
-      <Link href="#home" className="navItem">
+      <Link href="/#home" className="navItem">
         <motion.div
           {...hoverMotion}
           className="flex text-[2rem] font-bold tracking-tighter"
