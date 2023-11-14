@@ -25,9 +25,9 @@ const Business: React.FC = () => {
         initial={{ x: "-30vw" }}
         animate={{ x: isInView ? 0 : "-30vw" }}
         transition={{ duration: 0.75 }}
-        className="w-screen pb-[4vw] px-[5.4vw] xl:px-[8em]"
+        className="w-screen pb-[4vw] px-[5.4vw] xl:px-[8em] mt-[0.001em]"
       >
-        <section className="mb-[6em] h-[0.05em] w-full bg-black"></section>
+        <section className="hidden mb-[6em] h-[0.05em] w-full bg-black"></section>
 
         <section className="mb-[3em] md:mb-[5em]">
           <h1 className="uppercase text-[2em] md:text-[3.5em] leading-[0.95] font-semibold mt-[1.5em]">

@@ -35,10 +35,10 @@ const businesstItems: IBusinessItem[] = [
     body: `못쓰는 컴퓨터 본체, 모니터, 전자기기 등`,
   },
   {
-    title: "의류/잡화",
+    title: "철거",
     src: "/assets/steel.png",
-    alt: "의류/잡화 Logo",
-    body: `각종 옷, 헌가방, 신발(신발류는 짝이 맞고 재활용할 수 있는 것에 한함)`,
+    alt: "철거 logo",
+    body: `- 상업공간 철거: 음식점, 주점, 의류매장, 체인점 등`,
   },
   {
     title: `test`,
