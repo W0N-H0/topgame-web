@@ -2,7 +2,7 @@
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { useCursorTracker } from "@/hooks/useCursorTracker";
-import background from "@/public/background.png";
+import background from "@/public/mainBg.jpg";
 import { LuPhoneCall } from "react-icons/lu";
 import { SiKakaotalk } from "react-icons/si";
 import { motion } from "framer-motion";
