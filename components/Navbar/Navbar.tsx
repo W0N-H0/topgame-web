@@ -129,11 +129,11 @@ export default function Navbar() {
       </ul>
 
       <div>
-        <div className="hidden lg:flex justify-center gap-x-[1px] hover:gap-x-[5px] duration-[25ms] ease-in-out cursor-pointer w-[2rem]">
+        <button className="hidden lg:flex justify-center gap-x-[1px] hover:gap-x-[5px] duration-[25ms] ease-in-out cursor-pointer w-[2rem]">
           <p className="flex items-center font-bold text-[1.75rem] mb-3">.</p>
           <p className="flex items-center font-bold text-[1.75rem] mb-3">.</p>
           <p className="flex items-center font-bold text-[1.75rem] mb-3">.</p>
-        </div>
+        </button>
         <button className="uppercase block lg:hidden font-semibold">
           Menu
         </button>

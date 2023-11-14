@@ -8,13 +8,13 @@ const AboutContents: NextPage = () => {
       <Image
         src={logo}
         alt="logo_color"
-        width={500}
-        height={400}
+        width={450}
+        height={380}
         quality={100}
         style={{ filter: "brightness(90%)" }}
         className="rounded-md shadow-[6px_0px_45px_10px_#192832D8]"
       />
-      <div className="flex flex-col w-[40%] gap-5">
+      <div className="flex flex-col w-[40%] gap-5 text-[0.97em]">
         <p className="text-[1.5em] font-bold">
           정직과 신뢰를 바탕으로 고철매입, 철거 사업을 영위중인 <br />
           <span className="text-[1.4em] text-yellow-800">탑개미자원</span>
@@ -40,7 +40,7 @@ const AboutContents: NextPage = () => {
           이념을 바탕으로 고객님께 언제, 어디서든 다가 갈 수 있는 탑개미자원이
           되겠습니다.
         </p>
-        <p className="text-[1.5em] ">감사합니다. 탑개미자원 임직원 일동</p>
+        <p className="text-[1.5em] font-bold"> 탑개미자원　 임직원 일동</p>
       </div>
     </section>
   );

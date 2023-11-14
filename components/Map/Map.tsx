@@ -119,7 +119,7 @@ const Map: React.FC = () => {
             height: isMobile ? "40vh" : "60vh",
             borderRadius: "10px",
           }}
-          className="shadow-[6px_0px_45px_20px_#192832D8]"
+          className="shadow-[6px_0px_45px_10px_#192832D8]"
         />
       </motion.div>
     </section>
