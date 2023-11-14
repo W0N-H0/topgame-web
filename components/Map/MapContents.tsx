@@ -36,7 +36,7 @@ const MapContents: React.FC = () => {
     >
       <div className="flex flex-col w-full">
         <span className="text-[1.5em] md:text-[3em] leading-[1.2] font-medium mb-3">
-          · 위치
+          · 위치 ·
         </span>
         <span className="text-[1.1em] lg:text-[1.35em] mb-3">
           상호명 : 탑개미자원
@@ -65,7 +65,7 @@ const MapContents: React.FC = () => {
 
       <div className="w-full md:w-[30vw] flex flex-col justify-end items-end">
         <span className="flex text-[1.5em] md:text-[3em] leading-[1.2] font-medium mb-3 mt-10">
-          네비게이션 ·
+          · 네비게이션 ·
         </span>
         <span className="mb-3 text-[0.97em] lg:text-[1.25em]">
           길찾기 버튼을 클릭하여 네이게이션을 이용해보세요.

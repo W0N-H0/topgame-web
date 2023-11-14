@@ -15,7 +15,7 @@ const navItems = [
   {
     id: "item2",
     route: "/about",
-    name: "업체소개",
+    name: "회사소개",
   },
   {
     id: "item3",
