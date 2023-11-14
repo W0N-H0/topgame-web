@@ -6,11 +6,18 @@ import background from "@/public/background.png";
 import { LuPhoneCall } from "react-icons/lu";
 import { SiKakaotalk } from "react-icons/si";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const Main: React.FC = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const cursorPosition = useCursorTracker(targetRef);
+  const router = useRouter();
+
+  const navigateToBusiness = () => {
+    // '/#business'로 구역으로 이동
+    router.push("/#business");
+  };
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -25,6 +32,11 @@ const Main: React.FC = () => {
   const buttonVariants = {
     rest: { height: 0, opacity: 1 },
     hover: { height: "auto", opacity: 0.7, color: "black" },
+  };
+
+  // 호버시 모션 효과
+  const hoverMotion = {
+    whileHover: { scale: 1.1 },
   };
 
   return (
@@ -58,6 +70,7 @@ const Main: React.FC = () => {
               animate="rest"
               whileHover="hover"
               className="relative overflow-hidden mt-1 p-1 rounded-md text-[1.1rem]"
+              onClick={navigateToBusiness}
             >
               <motion.div
                 variants={buttonVariants}
@@ -72,12 +85,16 @@ const Main: React.FC = () => {
           <div className="flex flex-col m-2 mt-10 xs:mt-5 font-bold">
             <span className="ml-2"> 매입문의 & 견적상담 </span>
             <div className="flex flex-col text-[1.3rem] font-normal">
-              <div className="flex items-center m-2">
-                <LuPhoneCall className="mr-2" /> 010-4007-8524
-              </div>
-              <div className="flex items-center m-2">
-                <SiKakaotalk className="mr-2" /> 탑개미자원
-              </div>
+              <motion.div {...hoverMotion} className="flex items-center m-2">
+                <LuPhoneCall className="mr-2" />
+                <a href="tel:+8201040078524">010-4007-8524</a>
+              </motion.div>
+              <motion.div {...hoverMotion} className="flex items-center m-2">
+                <SiKakaotalk className="mr-2" />{" "}
+                <a href="https://naver.com" target="_blank">
+                  탑개미자원
+                </a>
+              </motion.div>
             </div>
           </div>
         </div>
