@@ -1,13 +1,14 @@
+import AboutBg from "./_components/AboutBg";
 import AboutContents from "./_components/AboutContents";
 import Loader from "@/components/Loader/Loader";
 
 const About: React.FC = () => {
   return (
-    <>
-      <h2>about</h2>
+    <main className="flex flex-col">
+      <AboutBg />
       <AboutContents />
-      <Loader isAboutPage={true} />
-    </>
+      <Loader body={"회사소개"} />
+    </main>
   );
 };
 
