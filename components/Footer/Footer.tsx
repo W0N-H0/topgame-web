@@ -1,12 +1,13 @@
 import React from "react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-screen text-gray-600 font-semibold">
+    <footer className="w-screen text-gray-600 font-semibold text-[0.9em]">
       <div className="flex justify-center mt-5 gap-4 pb-[1vw] px-[5.4vw] xl:px-[8rem]">
-        <a>회사소개</a>
+        <Link href="/about">회사소개</Link>
         <span className="border-l border-gray-600 rounded-md"></span>
-        <a>서비스 이용약관</a>
+        <Link href="/terms-of-use">서비스 이용약관</Link>
       </div>
       <div className="border-b border-gray-600 w-screen"></div>
       <div className="items-center mt-4 pb-[1vw] px-[5.4vw] xl:px-[8rem] flex flex-col gap-1">
