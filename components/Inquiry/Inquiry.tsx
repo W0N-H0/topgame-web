@@ -1,6 +1,5 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 import DaumPostcode from "react-daum-postcode";
 
 const Inquiry: React.FC = () => {
@@ -20,8 +19,23 @@ const Inquiry: React.FC = () => {
     },
 
     // 체크박스 클릭 이벤트
-    handleCheckboxChange: () => {
+    checkboxChange: () => {
       setCheckboxChecked(!checkboxChecked);
+    },
+
+    // 개인정보동의 클릭시 열리는 팝업창
+    openPopup: () => {
+      // 새 창 열기
+      const popupWindow = window.open(
+        "/privacy",
+        "_blank",
+        "width=500,height=500"
+      );
+
+      // 팝업이 차단되었을 경우 처리
+      if (!popupWindow) {
+        alert("팝업이 차단되었습니다. 팝업 차단을 해제하고 다시 시도하세요.");
+      }
     },
   };
 
@@ -66,10 +80,16 @@ const Inquiry: React.FC = () => {
                   <input
                     type="checkbox"
                     checked={checkboxChecked}
-                    onChange={handle.handleCheckboxChange}
+                    onChange={handle.checkboxChange}
                   />
                 </label>
-                개인정보수집동의
+                <a
+                  onClick={handle.openPopup}
+                  rel="noopener noreferrer"
+                  className="cursor-pointer"
+                >
+                  개인정보수집동의
+                </a>
               </div>
             </div>
             <div>2</div>
