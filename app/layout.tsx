@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { Pretendard } from "@/styles/font";
 import { Toaster } from "react-hot-toast";
+import LayoutProvider from "./LayoutProvider";
 
 interface Metadata {
   title: string;
@@ -28,9 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
           }}
         />
         <div className="background" />
-        <Navbar />
-        {children}
-        <Footer />
+        <LayoutProvider>{children}</LayoutProvider>
       </body>
     </html>
   );
