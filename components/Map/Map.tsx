@@ -2,6 +2,7 @@
 import MapContents from "./MapContents";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import useIsMobile from "@/hooks/useIsMobile";
 
 declare global {
   interface Window {
@@ -19,7 +20,7 @@ const hoverMotion = {
 };
 
 const Map: React.FC = () => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const isMobile = useIsMobile();
   const motionRef = useRef(null);
   const isInView = useInView(motionRef);
   const motionRef2 = useRef(null);
@@ -68,30 +69,6 @@ const Map: React.FC = () => {
     mapScript.addEventListener("load", onLoadKakaoMap);
 
     return () => mapScript.removeEventListener("load", onLoadKakaoMap);
-  }, []);
-
-  // 모바일 여부를 판단하는 useEffect
-  // kakao map에서 tailwind CSS가 적용이 안되는 이슈로 width size를 통해 모바일여부 판별
-  useEffect(() => {
-    function handleResize() {
-      const windowWidth = window.innerWidth;
-      if (windowWidth <= 475) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
-    }
-
-    // 페이지가 처음 로드될 때 호출하여 초기 상태를 설정합니다.
-    handleResize();
-
-    // 윈도우의 리사이즈 이벤트를 감지하고 화면 크기 변화에 따라 isMobile 상태를 업데이트합니다.
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      // 컴포넌트가 언마운트될 때, 리사이즈 이벤트 리스너를 제거합니다.
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   return (
