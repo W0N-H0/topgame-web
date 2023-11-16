@@ -119,6 +119,28 @@ input {
   box-shadow: 6px 0px 200px 100px #192832d8;
 }
 
-.placeholder {
-  font-size: 10px;
+/* 상담신청 리스트 STYLES */
+.swiper {
+  width: 45%;
+  height: 100%;
+}
+
+.swiper-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
 }
