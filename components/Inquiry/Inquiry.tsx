@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import logo from "@/public/logo.png";
 import InquiryForm from "./InquiryForm";
+import InquiryList from "./InquiryList";
 
 const Inquiry: React.FC = () => {
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
@@ -79,6 +80,7 @@ const Inquiry: React.FC = () => {
             setOpenPostcode={setOpenPostcode}
           />
         </div>
+        <InquiryList />
       </div>
     </section>
   );

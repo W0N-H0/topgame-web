@@ -37,11 +37,15 @@ const InquiryForm: React.FC<{
     };
 
     // 외부 클릭 감지 이벤트 추가
-    document.addEventListener("mousedown", handleClickOutside);
+    if (typeof window === "object") {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
 
     // 컴포넌트가 언마운트될 때 이벤트 제거
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      if (typeof window === "object") {
+        document.removeEventListener("mousedown", handleClickOutside);
+      }
     };
   }, [openPostcode]);
 
