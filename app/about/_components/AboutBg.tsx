@@ -4,9 +4,9 @@ import background from "@/public/aboutBg.jpg";
 
 const AboutBg: NextPage = () => {
   return (
-    <section className="w-screen h-[55vh] relative flex justify-center items-center">
-      <div className="flex flex-col absolute top-[40%] left-[15%] w-[70%] text-white">
-        <h1 className="text-[1.6rem] xs:text-[3.2rem] font-bold text-center">
+    <section className="w-screen h-[40vh] xs:h-[55vh] relative flex justify-center items-center">
+      <div className="flex flex-col absolute top-[50%] xs:top-[40%] left-[15%] w-[70%] text-white">
+        <h1 className="text-[2rem] xs:text-[3.2rem] font-bold text-center">
           회사 소개
         </h1>
 

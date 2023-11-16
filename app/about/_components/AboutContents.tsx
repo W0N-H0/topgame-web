@@ -1,20 +1,23 @@
+"use client";
 import { NextPage } from "next";
 import Image from "next/image";
 import logo from "../../../public/logo_color.png";
+import useIsMobile from "@/hooks/useIsMobile";
 
 const AboutContents: NextPage = () => {
+  const isMobile = useIsMobile();
   return (
-    <section className="p-[8em] flex gap-5 justify-evenly ">
+    <section className="p-[3em] xs:p-[8em] flex flex-col lg:flex-row gap-5 justify-evenly items-center ">
       <Image
         src={logo}
         alt="logo_color"
-        width={450}
-        height={380}
+        width={isMobile ? 150 : 450}
+        height={isMobile ? 150 : 380}
         quality={100}
         style={{ filter: "brightness(90%)" }}
         className="rounded-md shadow-[6px_0px_45px_10px_#192832D8]"
       />
-      <div className="flex flex-col w-[40%] gap-5 text-[0.97em]">
+      <div className="flex flex-col w-full lg:w-[40%] mt-5 lg:mt-0 gap-5 text-[0.97em]">
         <p className="text-[1.5em] font-bold">
           정직과 신뢰를 바탕으로 고철매입, 철거 사업을 영위중인 <br />
           <span className="text-[1.4em] text-yellow-800">탑개미자원</span>

@@ -5,8 +5,8 @@ import background from "@/public/termsofuseBg.jpg";
 const About: React.FC = () => {
   return (
     <>
-      <section className="w-screen h-[55vh] relative flex justify-center items-center">
-        <div className="flex flex-col absolute top-[40%] left-[15%] w-[70%] text-white">
+      <section className="w-screen h-[40vh] xs:h-[55vh] relative flex justify-center items-center">
+        <div className="flex flex-col absolute top-[50%] xs:top-[40%] left-[15%] w-[70%] text-white">
           <h1 className="text-[1.6rem] xs:text-[3.2rem] font-bold text-center">
             서비스이용약관
           </h1>
@@ -20,7 +20,7 @@ const About: React.FC = () => {
           quality={80}
         />
       </section>
-      <div className="px-[8em] py-[4em] grid gap-2">
+      <div className="p-[2em] xs:px-[8em] xs:py-[4em] grid gap-2">
         <h3>제1조(목적)</h3>
         <p>
           이 약관은 탑개미자원 회사(전자상거래 사업자)가 운영하는 탑개미자원

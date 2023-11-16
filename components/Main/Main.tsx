@@ -46,10 +46,10 @@ const Main: React.FC = () => {
       ref={targetRef}
     >
       <section className="flex flex-col absolute top-[24%] left-[15%] w-[70%] text-white">
-        <h1 className="text-[1.6rem] xs:text-[3.2rem] font-bold">
+        <h1 className="text-[1.35rem] xs:text-[3.2rem] font-bold">
           고철, 비철, 기계철, 폐전선, 동 <br /> 철거전문
           <span className="font-normal"> 업체</span> <br />
-          <span className="text-[3.7rem]">탑</span>개미자원
+          <span className="text-[2.5rem] xs:text-[3.7rem]">탑</span>개미자원
           <span className="font-normal">입니다.</span>
         </h1>
         <div className="flex justify-between">
