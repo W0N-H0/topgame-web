@@ -1,6 +1,4 @@
 import "../styles/globals.css";
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
 import { Pretendard } from "@/styles/font";
 import { Toaster } from "react-hot-toast";
 import LayoutProvider from "./LayoutProvider";

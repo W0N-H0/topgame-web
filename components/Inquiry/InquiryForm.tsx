@@ -50,9 +50,11 @@ const InquiryForm: React.FC<{
   }, [openPostcode]);
 
   return (
-    <div className="grid grid-cols-2 grid-rows-5 p-[1.5em] gap-3">
+    <form className="grid grid-cols-2 grid-rows-5 p-[1.5em] gap-3 text-[0.9em]">
       <div className="col-span-2 flex items-center">
-        <span className="text-[1.7em] ">온라인 상담 신청하기</span>
+        <span className="text-[1.5em] xs:text-[1.7em] ">
+          온라인 상담 신청하기
+        </span>
       </div>
       <input
         type="text"
@@ -107,7 +109,7 @@ const InquiryForm: React.FC<{
       </div>
       <button
         type="submit"
-        className="col-span-2 p-2 bg-gray-500 text-white rounded-md"
+        className="col-span-2 p-2 bg-gray-500 text-white rounded-md text-[1.1em]"
       >
         상담 신청하기
       </button>
@@ -124,7 +126,7 @@ const InquiryForm: React.FC<{
           />
         </div>
       )}
-    </div>
+    </form>
   );
 };
 
