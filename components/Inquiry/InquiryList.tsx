@@ -12,10 +12,10 @@ const InquiryList: React.FC = () => {
   console.log(data);
   return (
     <div className="flex flex-col justify-center w-full lg:w-[48%] h-[534px] shadow-[6px_0px_45px_10px_#192832D8] rounded-md font-bold p-6">
-      <div className="flex justify-between items-center text-[1.4em] xl:text-[1.7em] pt-3 pb-7 px-4 border-b-2 border-gray-500 mb-2">
+      <div className="flex justify-between items-center text-[1.4em] xl:text-[1.7em] pt-3 pb-7 px-4 border-b-2 border-gray-500 mb-3">
         <h1>
           상담신청
-          <br /> 진행현황 <span className="hidden xs:inline">리스트</span>
+          <br /> 진행현황 <span className="hidden xs:inline">확인하기</span>
         </h1>
         <div className="flex flex-col xs:flex-row items-center p-2">
           <Image
@@ -36,9 +36,9 @@ const InquiryList: React.FC = () => {
         slidesPerView={7}
         direction="vertical"
         loop={true}
-        // autoplay={{
-        //   delay: 2000,
-        // }}
+        autoplay={{
+          delay: 2000,
+        }}
         pagination={{
           dynamicBullets: true,
           clickable: true,
@@ -48,26 +48,26 @@ const InquiryList: React.FC = () => {
       >
         {data.map((el) => (
           <SwiperSlide>
-            <div className="flex font-normal gap-4 text-[0.8em] items-center">
+            <div className="flex font-normal gap-2 xs:gap-4 xl:gap-6 text-[0.8em] items-center">
               {el.isDone ? (
-                <div className="min-w-[65px] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">
+                <div className="text-[0.9em] xs:text-[1em] min-w-[55px] xs:min-w-[65px] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">
                   상담완료
                 </div>
               ) : (
-                <div className="min-w-[65px] bg-red-500 bg-opacity-90 p-1 rounded-md text-white">
+                <div className="text-[0.9em] xs:text-[1em] min-w-[55px] xs:min-w-[65px] bg-red-500 bg-opacity-90 p-1 rounded-md text-white">
                   상담 중
                 </div>
               )}
-              <div className="max-w-[195px] min-w-[195px] whitespace-nowrap overflow-hidden">
+              <div className="max-w-[195px] min-w-[180px] xs:min-w-[195px] whitespace-nowrap overflow-hidden">
                 {el.name}님의 상담신청 입니다.
               </div>
-              <div className="hidden xs:block lg:hidden 2xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
+              <div className="hidden md:block lg:hidden 2xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
                 {el.location}
               </div>
-              <div className="hidden xs:block lg:hidden xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
+              <div className="hidden sm:block lg:hidden xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
                 {el.item}
               </div>
-              <div className="hidden xs:block whitespace-nowrap overflow-hidden text-[0.9em]">
+              <div className="hidden sm:block whitespace-nowrap overflow-hidden text-[0.9em]">
                 {el.date}
               </div>
             </div>
