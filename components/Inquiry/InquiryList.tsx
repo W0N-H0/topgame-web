@@ -9,7 +9,6 @@ import data from "./data";
 
 const InquiryList: React.FC = () => {
   const isMobile = useIsMobile();
-  console.log(data);
   return (
     <div className="flex flex-col justify-center w-full lg:w-[48%] h-[534px] shadow-[6px_0px_45px_10px_#192832D8] rounded-md font-bold p-6">
       <div className="flex justify-between items-center text-[1.4em] xl:text-[1.7em] pt-3 pb-7 px-4 border-b-2 border-gray-500 mb-3">
@@ -46,8 +45,8 @@ const InquiryList: React.FC = () => {
         modules={[Autoplay, Pagination]}
         className="p-3"
       >
-        {data.map((el) => (
-          <SwiperSlide>
+        {data.map((el, idx) => (
+          <SwiperSlide key={idx}>
             <div className="flex font-normal gap-2 xs:gap-4 xl:gap-6 text-[0.8em] items-center">
               {el.isDone ? (
                 <div className="text-[0.9em] xs:text-[1em] min-w-[55px] xs:min-w-[65px] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">

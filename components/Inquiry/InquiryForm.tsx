@@ -59,37 +59,37 @@ const InquiryForm: React.FC<{
       <input
         type="text"
         placeholder="이름"
-        value={name}
+        defaultValue={name}
         onChange={handleNameChange}
       />
       <input
         type="text"
         placeholder="연락처"
-        value={contact}
+        defaultValue={contact}
         onChange={handleContactChange}
       />
       <input
         type="text"
         placeholder="상호명"
-        value={company}
+        defaultValue={company}
         onChange={handleCompanyChange}
       />
       <input
         type="text"
         placeholder="품목"
-        value={item}
+        defaultValue={item}
         onChange={handleItemChange}
       />
 
       <input
         onClick={handle.clickButton}
         placeholder="주소 입력"
-        value={selectedAddress}
+        defaultValue={selectedAddress}
         className="rounded-md col-span-2"
       />
       <input
         placeholder="상세주소 입력"
-        value={detailAddress}
+        defaultValue={detailAddress}
         onChange={handleDetailAddressChange}
         className="rounded-md col-span-2"
       />
