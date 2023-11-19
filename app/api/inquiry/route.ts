@@ -47,7 +47,7 @@ export async function GET(request: Request) {
 
   try {
     // 최신 데이터 15개를 가져오기 위해 find 메서드를 사용
-    const latestData = await Data.find().sort({ date: -1 }).limit(15);
+    const latestData = await Data.find().sort({ date: -1 }).limit(21);
 
     return NextResponse.json(latestData, { status: 200 });
   } catch (error) {
