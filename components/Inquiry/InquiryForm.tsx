@@ -2,6 +2,16 @@ import { useRef, useEffect, MouseEvent } from "react";
 import DaumPostcode from "react-daum-postcode";
 import useInput from "@/hooks/useInput";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+
+const hoverMotion = {
+  transition: {
+    type: "spring",
+    stiffness: 500,
+    damping: 15,
+  },
+  whileHover: { scale: 1.03 },
+};
 
 interface InquiryFormProps {
   handle: any;
@@ -166,26 +176,29 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
         className="rounded-md col-span-2"
       />
       <div className="col-span-2 flex justify-center">
-        <input
+        <motion.input
+          whileHover={{ scale: 1.3 }}
           type="checkbox"
           checked={agreedToTerms}
           onChange={handle.checkboxChange}
         />
-        <a
+        <motion.a
+          whileHover={{ scale: 1.03 }}
           onClick={handle.openPopup}
           rel="noopener noreferrer"
           className="cursor-pointer ml-2"
         >
           개인정보 수집 및 이용에 동의합니다.
-        </a>
+        </motion.a>
       </div>
-      <button
+      <motion.button
+        {...hoverMotion}
         type="submit"
         className="col-span-2 p-2 bg-gray-500 text-white rounded-md text-[1.1em]"
         onClick={handleSubmit}
       >
         상담 신청하기
-      </button>
+      </motion.button>
 
       {openPostcode && (
         <div
