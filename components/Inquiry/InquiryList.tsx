@@ -6,12 +6,14 @@ import "swiper/swiper-bundle.css";
 import phoneCall from "@/public/phone_call.gif";
 import useIsMobile from "@/hooks/useIsMobile";
 import { InquiryData } from "@/store/InquiryStore";
+import loadingImg from "@/public/loading.gif";
 
 interface InquiryListProps {
   data: InquiryData[];
+  loading: Boolean;
 }
 
-const InquiryList: React.FC<InquiryListProps> = ({ data }) => {
+const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
   const isMobile = useIsMobile();
 
   return (
@@ -50,38 +52,60 @@ const InquiryList: React.FC<InquiryListProps> = ({ data }) => {
         modules={[Autoplay, Pagination]}
         className="p-3"
       >
-        {data.map((el, idx) => {
-          const date = new Date(el.date);
-          const formattedDate = date.toISOString().split("T")[0]; // '년-월-일' 형식으로 변환
-
-          return (
-            <SwiperSlide key={el._id}>
-              <div className="flex w-full font-normal gap-2 xs:gap-4 xl:gap-6 text-[0.85em] justify-center items-center">
-                {el.isDone ? (
-                  <div className="text-[0.9em] xs:text-[1.05em] min-w-[11%] xs:min-w-[11%] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">
-                    상담완료
-                  </div>
-                ) : (
-                  <div className="text-[0.9em] xs:text-[1.05em] min-w-[11%] xs:min-w-[11%] bg-red-500 bg-opacity-90 p-1 rounded-md text-white">
-                    상담 중
-                  </div>
-                )}
-                <div className="max-w-[30%] min-w-[25%] xs:min-w-[30%] whitespace-nowrap overflow-hidden">
-                  {el.name}님의 상담신청 입니다.
-                </div>
-                <div className="max-w-[15%] min-w-[15%] hidden md:block lg:hidden 2xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
-                  {el.address}
-                </div>
-                <div className="max-w-[10%] min-w-[10%] hidden sm:block lg:hidden xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
-                  {el.item}
-                </div>
-                <div className="max-w-[10%] min-w-[10%] hidden sm:block whitespace-nowrap overflow-hidden text-[0.9em]">
-                  {formattedDate}
-                </div>
-              </div>
+        {loading ? (
+          <>
+            <SwiperSlide>
+              <Image
+                src={loadingImg}
+                width={20}
+                height={20}
+                alt="loading gif"
+              ></Image>
             </SwiperSlide>
-          );
-        })}
+            <SwiperSlide>상담신청 데이터를 불러오고 있습니다.</SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src={loadingImg}
+                width={20}
+                height={20}
+                alt="loading gif"
+              ></Image>
+            </SwiperSlide>
+          </>
+        ) : (
+          data.map((el) => {
+            const date = new Date(el.date);
+            const formattedDate = date.toISOString().split("T")[0]; // '년-월-일' 형식으로 변환
+
+            return (
+              <SwiperSlide key={el._id}>
+                <div className="flex w-full font-normal gap-2 xs:gap-4 xl:gap-6 text-[0.85em] justify-center items-center">
+                  {el.isDone ? (
+                    <div className="text-[0.9em] xs:text-[1.05em] min-w-[11%] xs:min-w-[11%] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">
+                      상담완료
+                    </div>
+                  ) : (
+                    <div className="text-[0.9em] xs:text-[1.05em] min-w-[11%] xs:min-w-[11%] bg-red-500 bg-opacity-90 p-1 rounded-md text-white">
+                      상담 중
+                    </div>
+                  )}
+                  <div className="max-w-[30%] min-w-[25%] xs:min-w-[30%] whitespace-nowrap overflow-hidden">
+                    {el.name}님의 상담신청 입니다.
+                  </div>
+                  <div className="max-w-[15%] min-w-[15%] hidden md:block lg:hidden 2xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
+                    {el.address}
+                  </div>
+                  <div className="max-w-[10%] min-w-[10%] hidden sm:block lg:hidden xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
+                    {el.item}
+                  </div>
+                  <div className="max-w-[10%] min-w-[10%] hidden sm:block whitespace-nowrap overflow-hidden text-[0.9em]">
+                    {formattedDate}
+                  </div>
+                </div>
+              </SwiperSlide>
+            );
+          })
+        )}
       </Swiper>
     </div>
   );

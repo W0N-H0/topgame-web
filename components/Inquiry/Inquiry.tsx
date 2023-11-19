@@ -12,7 +12,7 @@ const Inquiry: React.FC = () => {
   const [selectedAddress, setSelectedAddress] = useState<string>("");
   const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
   const isMobile = useIsMobile();
-  const { data, error, fetchData } = useInquiryStore();
+  const { data, loading, error, fetchData } = useInquiryStore();
 
   useEffect(() => {
     fetchData();
@@ -91,7 +91,7 @@ const Inquiry: React.FC = () => {
             fetchData={fetchData}
           />
         </div>
-        <InquiryList data={data} />
+        <InquiryList data={data} loading={loading} />
       </div>
     </section>
   );
