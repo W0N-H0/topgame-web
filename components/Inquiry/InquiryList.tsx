@@ -47,7 +47,7 @@ const InquiryList: React.FC = () => {
       >
         {data.map((el, idx) => (
           <SwiperSlide key={idx}>
-            <div className="flex font-normal gap-2 xs:gap-4 xl:gap-6 text-[0.8em] items-center">
+            <div className="flex font-normal gap-2 xs:gap-4 xl:gap-6 text-[0.85em] items-center">
               {el.isDone ? (
                 <div className="text-[0.9em] xs:text-[1em] min-w-[55px] xs:min-w-[65px] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">
                   상담완료

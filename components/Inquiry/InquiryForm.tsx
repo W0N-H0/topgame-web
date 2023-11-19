@@ -92,9 +92,9 @@ const InquiryForm: React.FC<{
   }, [openPostcode]);
 
   return (
-    <form className="grid grid-cols-2 grid-rows-5 p-[1.5em] gap-3 text-[0.9em]">
+    <form className="grid grid-cols-2 grid-rows-5 p-[1.5em] gap-3 text-[0.95em]">
       <div className="col-span-2 flex items-center">
-        <span className="text-[1.5em] xs:text-[1.7em] ">
+        <span className="text-[1.6em] xs:text-[1.8em] ">
           온라인 상담 신청하기
         </span>
       </div>
