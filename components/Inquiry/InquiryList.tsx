@@ -5,12 +5,17 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import phoneCall from "@/public/phone_call.gif";
 import useIsMobile from "@/hooks/useIsMobile";
-import data from "./data";
+import { InquiryData } from "@/store/InquiryStore";
 
-const InquiryList: React.FC = () => {
+interface InquiryListProps {
+  data: InquiryData[];
+}
+
+const InquiryList: React.FC<InquiryListProps> = ({ data }) => {
   const isMobile = useIsMobile();
+
   return (
-    <div className="flex flex-col justify-center w-full lg:w-[48%] h-[534px] shadow-[6px_0px_45px_10px_#192832D8] rounded-md font-bold p-6">
+    <div className="flex flex-col justify-center w-full lg:w-[48%] h-[545x] shadow-[6px_0px_45px_10px_#192832D8] rounded-md font-bold p-6">
       <div className="flex justify-between items-center text-[1.4em] xl:text-[1.7em] pt-3 pb-7 px-4 border-b-2 border-gray-500 mb-3">
         <h1>
           상담신청
@@ -45,33 +50,38 @@ const InquiryList: React.FC = () => {
         modules={[Autoplay, Pagination]}
         className="p-3"
       >
-        {data.map((el, idx) => (
-          <SwiperSlide key={idx}>
-            <div className="flex font-normal gap-2 xs:gap-4 xl:gap-6 text-[0.85em] items-center">
-              {el.isDone ? (
-                <div className="text-[0.9em] xs:text-[1em] min-w-[55px] xs:min-w-[65px] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">
-                  상담완료
+        {data.map((el, idx) => {
+          const date = new Date(el.date);
+          const formattedDate = date.toISOString().split("T")[0]; // '년-월-일' 형식으로 변환
+
+          return (
+            <SwiperSlide key={el._id}>
+              <div className="flex w-full font-normal gap-2 xs:gap-4 xl:gap-6 text-[0.85em] justify-center items-center">
+                {el.isDone ? (
+                  <div className="text-[0.9em] xs:text-[1.05em] min-w-[11%] xs:min-w-[11%] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">
+                    상담완료
+                  </div>
+                ) : (
+                  <div className="text-[0.9em] xs:text-[1.05em] min-w-[11%] xs:min-w-[11%] bg-red-500 bg-opacity-90 p-1 rounded-md text-white">
+                    상담 중
+                  </div>
+                )}
+                <div className="max-w-[30%] min-w-[25%] xs:min-w-[30%] whitespace-nowrap overflow-hidden">
+                  {el.name}님의 상담신청 입니다.
                 </div>
-              ) : (
-                <div className="text-[0.9em] xs:text-[1em] min-w-[55px] xs:min-w-[65px] bg-red-500 bg-opacity-90 p-1 rounded-md text-white">
-                  상담 중
+                <div className="max-w-[15%] min-w-[15%] hidden md:block lg:hidden 2xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
+                  {el.address}
                 </div>
-              )}
-              <div className="max-w-[195px] min-w-[180px] xs:min-w-[195px] whitespace-nowrap overflow-hidden">
-                {el.name}님의 상담신청 입니다.
+                <div className="max-w-[10%] min-w-[10%] hidden sm:block lg:hidden xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
+                  {el.item}
+                </div>
+                <div className="max-w-[10%] min-w-[10%] hidden sm:block whitespace-nowrap overflow-hidden text-[0.9em]">
+                  {formattedDate}
+                </div>
               </div>
-              <div className="hidden md:block lg:hidden 2xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
-                {el.location}
-              </div>
-              <div className="hidden sm:block lg:hidden xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
-                {el.item}
-              </div>
-              <div className="hidden sm:block whitespace-nowrap overflow-hidden text-[0.9em]">
-                {el.date}
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

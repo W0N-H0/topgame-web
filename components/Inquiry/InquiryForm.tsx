@@ -3,20 +3,24 @@ import DaumPostcode from "react-daum-postcode";
 import useInput from "@/hooks/useInput";
 import toast from "react-hot-toast";
 
-const InquiryForm: React.FC<{
+interface InquiryFormProps {
   handle: any;
   agreedToTerms: boolean;
   selectedAddress: string;
   openPostcode: boolean;
   setOpenPostcode: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedAddress: React.Dispatch<React.SetStateAction<string>>;
-}> = ({
+  fetchData: () => Promise<void>;
+}
+
+const InquiryForm: React.FC<InquiryFormProps> = ({
   handle,
   agreedToTerms,
   selectedAddress,
   openPostcode,
   setOpenPostcode,
   setSelectedAddress,
+  fetchData,
 }) => {
   const postcodeRef = useRef<HTMLDivElement | null>(null);
   const [name, handleNameChange, clearName] = useInput("");
@@ -39,6 +43,29 @@ const InquiryForm: React.FC<{
       agreedToTerms,
     };
 
+    interface FieldNames {
+      [key: string]: string;
+    }
+    const fields: FieldNames = {
+      name: "이름",
+      contact: "연락처",
+      company: "상호명",
+      item: "품목",
+      address: "주소",
+      addressDetail: "상세주소",
+    };
+
+    for (let field in fields) {
+      if (!(formData as any)[field]) {
+        toast.error(`${fields[field]}을(를) 입력하세요.`);
+        return;
+      }
+    }
+    if (!agreedToTerms) {
+      toast.error("개인정보 수집 및 이용에 동의해주세요.");
+      return;
+    }
+
     try {
       const response = await fetch("/api/inquiry", {
         method: "POST",
@@ -49,18 +76,21 @@ const InquiryForm: React.FC<{
       });
 
       if (response.ok) {
+        toast.success("상담신청이 완료되었습니다.");
         const responseData = await response.json();
+        fetchData();
         clearName();
         clearContact();
         clearCompany();
         clearItem();
         clearDetailAddress();
         setSelectedAddress("");
-        console.log("API Response:", responseData);
       } else {
+        toast.error("상담신청 중 에러가 발생하였습니다.");
         console.error("Error submitting form:", response.statusText);
       }
     } catch (error) {
+      toast.error("상담신청 중 에러가 발생하였습니다...");
       console.error("Error submitting form:", error);
     }
   };

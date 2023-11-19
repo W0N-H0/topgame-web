@@ -5,12 +5,18 @@ import logo from "@/public/logo.png";
 import InquiryForm from "./InquiryForm";
 import InquiryList from "./InquiryList";
 import useIsMobile from "@/hooks/useIsMobile";
+import { useInquiryStore } from "@/store/InquiryStore";
 
 const Inquiry: React.FC = () => {
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const [selectedAddress, setSelectedAddress] = useState<string>("");
   const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
   const isMobile = useIsMobile();
+  const { data, error, fetchData } = useInquiryStore();
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handle = {
     clickButton: () => {
@@ -82,9 +88,10 @@ const Inquiry: React.FC = () => {
             openPostcode={openPostcode}
             setOpenPostcode={setOpenPostcode}
             setSelectedAddress={setSelectedAddress}
+            fetchData={fetchData}
           />
         </div>
-        <InquiryList />
+        <InquiryList data={data} />
       </div>
     </section>
   );
