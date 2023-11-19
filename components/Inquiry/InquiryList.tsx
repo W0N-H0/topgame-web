@@ -16,6 +16,14 @@ interface InquiryListProps {
 const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
   const isMobile = useIsMobile();
 
+  // 이름 가공을 위한 함수
+  const maskName = (name: String) => {
+    return name
+      .split("")
+      .map((char, index) => (index % 2 === 1 ? "*" : char))
+      .join("");
+  };
+
   return (
     <div className="flex flex-col w-full lg:w-[48%] h-[545x] shadow-[6px_0px_45px_10px_#192832D8] rounded-md font-bold p-6">
       <div className="flex justify-between items-center text-[1.4em] xl:text-[1.7em] pt-3 pb-7 px-4 border-b-2 border-gray-500 mb-3">
@@ -68,21 +76,21 @@ const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
           {data.map((el) => {
             const date = new Date(el.date);
             const formattedDate = date.toISOString().split("T")[0]; // '년-월-일' 형식으로 변환
-
+            const maskedName = maskName(el.name); // 이름 가공 ex) 이*호
             return (
               <SwiperSlide key={el._id}>
                 <div className="flex w-full font-normal gap-2 xs:gap-4 xl:gap-6 text-[0.85em] justify-center items-center">
                   {el.isDone ? (
-                    <div className="text-[0.9em] xs:text-[1.05em] min-w-[11%] xs:min-w-[11%] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">
+                    <div className="text-[0.9em] xs:text-[1.05em] min-w-[21%] xs:min-w-[11%] bg-green-500 bg-opacity-95 p-[5px] rounded-md text-white">
                       상담완료
                     </div>
                   ) : (
-                    <div className="text-[0.9em] xs:text-[1.05em] min-w-[11%] xs:min-w-[11%] bg-red-500 bg-opacity-90 p-1 rounded-md text-white">
+                    <div className="text-[0.9em] xs:text-[1.05em] min-w-[21%] xs:min-w-[11%] bg-red-500 bg-opacity-90 p-1 rounded-md text-white">
                       상담 중
                     </div>
                   )}
                   <div className="max-w-[70%] min-w-[70%] xs:max-w-[40%] xl:max-w-[33%] xs:min-w-[40%] xl:min-w-[33%] whitespace-nowrap overflow-hidden">
-                    {el.name}님의 상담신청 입니다.
+                    {maskedName}님의 상담신청 입니다.
                   </div>
                   <div className="max-w-[15%] min-w-[15%] hidden md:block lg:hidden 2xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
                     {el.address}
