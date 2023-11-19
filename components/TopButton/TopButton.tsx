@@ -39,7 +39,7 @@ const TopButton = () => {
       {...hoverMotion}
       className={` ${
         isScrolling
-          ? "fixed bottom-7 right-7 z-50 bg-gray-600 rounded-full p-3 shadow-2xl"
+          ? "fixed bottom-7 right-7 z-50 bg-red-500 rounded-full p-3 shadow-2xl"
           : ""
       }`}
       onClick={handleButtonClick}
