@@ -49,7 +49,11 @@ const DataSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    default: Date.now, // 현재 날짜 및 시간으로 기본값 설정
+    default: () => {
+      let now = new Date();
+      now.setHours(now.getHours() + 9);
+      return now;
+    }, // 현재 날짜 및 시간으로 기본값 설정
   },
 });
 
