@@ -1,19 +1,22 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, MouseEvent } from "react";
 import DaumPostcode from "react-daum-postcode";
 import useInput from "@/hooks/useInput";
+import toast from "react-hot-toast";
 
 const InquiryForm: React.FC<{
   handle: any;
-  checkboxChecked: boolean;
+  agreedToTerms: boolean;
   selectedAddress: string;
   openPostcode: boolean;
   setOpenPostcode: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedAddress: React.Dispatch<React.SetStateAction<string>>;
 }> = ({
   handle,
-  checkboxChecked,
+  agreedToTerms,
   selectedAddress,
   openPostcode,
   setOpenPostcode,
+  setSelectedAddress,
 }) => {
   const postcodeRef = useRef<HTMLDivElement | null>(null);
   const [name, handleNameChange, clearName] = useInput("");
@@ -22,6 +25,45 @@ const InquiryForm: React.FC<{
   const [item, handleItemChange, clearItem] = useInput("");
   const [detailAddress, handleDetailAddressChange, clearDetailAddress] =
     useInput("");
+
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    const formData = {
+      name,
+      contact,
+      company,
+      item,
+      address: selectedAddress,
+      addressDetail: detailAddress,
+      agreedToTerms,
+    };
+
+    try {
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        clearName();
+        clearContact();
+        clearCompany();
+        clearItem();
+        clearDetailAddress();
+        setSelectedAddress("");
+        console.log("API Response:", responseData);
+      } else {
+        console.error("Error submitting form:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
 
   // 주소창 모달 외부 클릭시 모달 닫는 useEffect
   useEffect(() => {
@@ -59,44 +101,44 @@ const InquiryForm: React.FC<{
       <input
         type="text"
         placeholder="이름"
-        defaultValue={name}
+        value={name}
         onChange={handleNameChange}
       />
       <input
         type="text"
         placeholder="연락처"
-        defaultValue={contact}
+        value={contact}
         onChange={handleContactChange}
       />
       <input
         type="text"
         placeholder="상호명"
-        defaultValue={company}
+        value={company}
         onChange={handleCompanyChange}
       />
       <input
         type="text"
         placeholder="품목"
-        defaultValue={item}
+        value={item}
         onChange={handleItemChange}
       />
 
       <input
         onClick={handle.clickButton}
-        placeholder="주소 입력"
+        placeholder="클릭하여 주소를 검색하세요."
         defaultValue={selectedAddress}
         className="rounded-md col-span-2"
       />
       <input
         placeholder="상세주소 입력"
-        defaultValue={detailAddress}
+        value={detailAddress}
         onChange={handleDetailAddressChange}
         className="rounded-md col-span-2"
       />
       <div className="col-span-2 flex justify-center">
         <input
           type="checkbox"
-          checked={checkboxChecked}
+          checked={agreedToTerms}
           onChange={handle.checkboxChange}
         />
         <a
@@ -110,13 +152,15 @@ const InquiryForm: React.FC<{
       <button
         type="submit"
         className="col-span-2 p-2 bg-gray-500 text-white rounded-md text-[1.1em]"
+        onClick={handleSubmit}
       >
         상담 신청하기
       </button>
+
       {openPostcode && (
         <div
           ref={postcodeRef}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-md"
+          className="z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-md"
         >
           <DaumPostcode
             onComplete={handle.selectAddress}

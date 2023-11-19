@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import logo from "@/public/logo.png";
 import InquiryForm from "./InquiryForm";
@@ -9,7 +9,7 @@ import useIsMobile from "@/hooks/useIsMobile";
 const Inquiry: React.FC = () => {
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const [selectedAddress, setSelectedAddress] = useState<string>("");
-  const [checkboxChecked, setCheckboxChecked] = useState<boolean>(false);
+  const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
   const isMobile = useIsMobile();
 
   const handle = {
@@ -26,7 +26,7 @@ const Inquiry: React.FC = () => {
 
     // 체크박스 클릭 이벤트
     checkboxChange: () => {
-      setCheckboxChecked(!checkboxChecked);
+      setAgreedToTerms(!agreedToTerms);
     },
 
     // 개인정보동의 클릭시 열리는 팝업창
@@ -77,10 +77,11 @@ const Inquiry: React.FC = () => {
           </div>
           <InquiryForm
             handle={handle}
-            checkboxChecked={checkboxChecked}
+            agreedToTerms={agreedToTerms}
             selectedAddress={selectedAddress}
             openPostcode={openPostcode}
             setOpenPostcode={setOpenPostcode}
+            setSelectedAddress={setSelectedAddress}
           />
         </div>
         <InquiryList />
