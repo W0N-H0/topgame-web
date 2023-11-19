@@ -18,12 +18,8 @@ export const useCursorTracker = (
       const x: number = e.clientX - bounds.left - centerX;
       const y: number = e.clientY - bounds.top - centerY;
       const target = e.target as HTMLElement;
-      if (target.tagName === "A" || target.tagName === "BUTTON") {
-        // a태그나 버튼에 hover시 커서포지션 0,0으로 초기화
-        setCursorPos({ x: 0, y: 0 });
-      } else {
-        setCursorPos({ x, y });
-      }
+
+      setCursorPos({ x, y });
     }
   };
 

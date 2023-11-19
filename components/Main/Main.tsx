@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { useCursorTracker } from "@/hooks/useCursorTracker";
 import background from "@/public/mainBg.jpg";
@@ -13,6 +13,12 @@ const Main: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const cursorPosition = useCursorTracker(targetRef);
   const router = useRouter();
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
+  const handleHoverChange = (newIsHovered: boolean): boolean => {
+    setIsHovered(newIsHovered);
+    return true;
+  };
 
   const navigateToBusiness = () => {
     // '/#business'로 구역으로 이동
@@ -41,7 +47,7 @@ const Main: React.FC = () => {
 
   return (
     <div
-      className="w-screen h-screen relative flex justify-center items-center overflow-hidden "
+      className="w-screen h-screen relative flex justify-center items-center overflow-hidden cursor-none"
       id="home"
       ref={targetRef}
     >
@@ -71,6 +77,8 @@ const Main: React.FC = () => {
               whileHover="hover"
               className="relative overflow-hidden mt-1 p-1 rounded-md text-[1.1rem]"
               onClick={navigateToBusiness}
+              onMouseEnter={() => handleHoverChange(true)}
+              onMouseLeave={() => handleHoverChange(false)}
             >
               <motion.div
                 variants={buttonVariants}
@@ -87,11 +95,22 @@ const Main: React.FC = () => {
             <div className="flex flex-col text-[1.3rem] font-normal">
               <motion.div {...hoverMotion} className="flex items-center m-2">
                 <LuPhoneCall className="mr-2" />
-                <a href="tel:+8201040078524">010-4007-8524</a>
+                <a
+                  href="tel:+8201040078524"
+                  onMouseEnter={() => handleHoverChange(true)}
+                  onMouseLeave={() => handleHoverChange(false)}
+                >
+                  010-4007-8524
+                </a>
               </motion.div>
               <motion.div {...hoverMotion} className="flex items-center m-2">
                 <SiKakaotalk className="mr-2" />{" "}
-                <a href="https://naver.com" target="_blank">
+                <a
+                  href="https://naver.com"
+                  target="_blank"
+                  onMouseEnter={() => handleHoverChange(true)}
+                  onMouseLeave={() => handleHoverChange(false)}
+                >
                   탑개미자원
                 </a>
               </motion.div>
@@ -121,19 +140,22 @@ const Main: React.FC = () => {
       </video>
 
       {/* 커스텀 커서 main 페이지 일시 보류 */}
-      {/* <div
-        className="hidden xs:flex justify-center items-center bg-gray-50 rounded-full w-[6rem] h-[6rem] p-2 uppercase text-center text-[0.9rem] font-bold leading-tight duration-[70ms] maincursor "
+      <div
+        className={`maincursor hidden w-[6.5em] h-[6.5em] bg-gray-50 rounded-full uppercase lg:flex justify-center items-center font-bold absolute pointer-events-none duration-[60ms] ease-linear ${
+          isHovered === true ? "opacity-25" : "opacity-100"
+        }`}
         style={{
           transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)`,
         }}
       >
-        <p>
-          010 <br />
-          4007
-          <br />
-          8524
-        </p>
-      </div> */}
+        {isHovered === false ? (
+          <p>
+            각종 철, 종이 <br /> 최고가 매입
+          </p>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };
