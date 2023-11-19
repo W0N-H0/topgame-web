@@ -17,7 +17,7 @@ const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="flex flex-col justify-center w-full lg:w-[48%] h-[545x] shadow-[6px_0px_45px_10px_#192832D8] rounded-md font-bold p-6">
+    <div className="flex flex-col w-full lg:w-[48%] h-[545x] shadow-[6px_0px_45px_10px_#192832D8] rounded-md font-bold p-6">
       <div className="flex justify-between items-center text-[1.4em] xl:text-[1.7em] pt-3 pb-7 px-4 border-b-2 border-gray-500 mb-3">
         <h1>
           상담신청
@@ -36,44 +36,36 @@ const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
           </div>
         </div>
       </div>
-      <Swiper
-        style={{ height: "355px", width: "100%" }}
-        spaceBetween={10}
-        slidesPerView={7}
-        direction="vertical"
-        loop={true}
-        autoplay={{
-          delay: 2000,
-        }}
-        pagination={{
-          dynamicBullets: true,
-          clickable: true,
-        }}
-        modules={[Autoplay, Pagination]}
-        className="p-3"
-      >
-        {loading ? (
-          <>
-            <SwiperSlide>
-              <Image
-                src={loadingImg}
-                width={20}
-                height={20}
-                alt="loading gif"
-              ></Image>
-            </SwiperSlide>
-            <SwiperSlide>상담신청 데이터를 불러오고 있습니다.</SwiperSlide>
-            <SwiperSlide>
-              <Image
-                src={loadingImg}
-                width={20}
-                height={20}
-                alt="loading gif"
-              ></Image>
-            </SwiperSlide>
-          </>
-        ) : (
-          data.map((el) => {
+      {loading ? (
+        <>
+          <div className="flex flex-col justify-center items-center mt-[2em]">
+            <Image
+              src={loadingImg}
+              width={100}
+              height={100}
+              alt="loading gif"
+            />
+            상담신청 데이터를 불러오고 있습니다.
+          </div>
+        </>
+      ) : (
+        <Swiper
+          style={{ height: "368px", width: "100%" }}
+          spaceBetween={10}
+          slidesPerView={7}
+          direction="vertical"
+          loop={true}
+          autoplay={{
+            delay: 2000,
+          }}
+          pagination={{
+            dynamicBullets: true,
+            clickable: true,
+          }}
+          modules={[Autoplay, Pagination]}
+          className="p-3"
+        >
+          {data.map((el) => {
             const date = new Date(el.date);
             const formattedDate = date.toISOString().split("T")[0]; // '년-월-일' 형식으로 변환
 
@@ -89,7 +81,7 @@ const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
                       상담 중
                     </div>
                   )}
-                  <div className="max-w-[30%] min-w-[25%] xs:min-w-[30%] whitespace-nowrap overflow-hidden">
+                  <div className="max-w-[70%] min-w-[70%] xs:max-w-[40%] xl:max-w-[33%] xs:min-w-[40%] xl:min-w-[33%] whitespace-nowrap overflow-hidden">
                     {el.name}님의 상담신청 입니다.
                   </div>
                   <div className="max-w-[15%] min-w-[15%] hidden md:block lg:hidden 2xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
@@ -98,15 +90,15 @@ const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
                   <div className="max-w-[10%] min-w-[10%] hidden sm:block lg:hidden xl:block whitespace-nowrap overflow-hidden text-[0.9em]">
                     {el.item}
                   </div>
-                  <div className="max-w-[10%] min-w-[10%] hidden sm:block whitespace-nowrap overflow-hidden text-[0.9em]">
+                  <div className="hidden sm:block whitespace-nowrap overflow-hidden text-[0.9em]">
                     {formattedDate}
                   </div>
                 </div>
               </SwiperSlide>
             );
-          })
-        )}
-      </Swiper>
+          })}
+        </Swiper>
+      )}
     </div>
   );
 };
