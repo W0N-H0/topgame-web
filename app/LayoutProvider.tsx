@@ -11,7 +11,7 @@ const LayoutProvider: React.FC<LayoutProviderProps> = ({ children }) => {
   const pathname = usePathname();
   return (
     <main>
-      {pathname === "/privacy" ? (
+      {pathname === "/privacy" || pathname === "/login" ? (
         <>{children}</>
       ) : (
         <>
