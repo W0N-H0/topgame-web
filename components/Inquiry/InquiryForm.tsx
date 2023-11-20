@@ -167,6 +167,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
         onClick={handle.clickButton}
         placeholder="클릭하여 주소를 검색하세요."
         value={selectedAddress}
+        readOnly
         className="rounded-md col-span-2"
       />
       <input
