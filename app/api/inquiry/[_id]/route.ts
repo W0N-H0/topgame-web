@@ -28,6 +28,11 @@ export async function DELETE(request: NextRequest) {
   await dbConnect();
 
   try {
+    // 쿠키 확인
+    const auth = request.cookies.get("auth");
+    if (!auth) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { pathname } = request.nextUrl; // request.nextUrl을 사용
     const id = pathname.split("/").pop(); // 마지막 세그먼트를 ID로 사용
     const deletedData = await Data.findByIdAndDelete(id);
@@ -53,7 +58,6 @@ export async function PATCH(request: NextRequest) {
   try {
     // 쿠키 확인
     const auth = request.cookies.get("auth");
-    console.log(auth);
     if (!auth) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
