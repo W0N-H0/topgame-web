@@ -51,6 +51,13 @@ export async function PATCH(request: NextRequest) {
   await dbConnect();
 
   try {
+    // 쿠키 확인
+    const auth = request.cookies.get("auth");
+    console.log(auth);
+    if (!auth) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { pathname, searchParams } = request.nextUrl; // request.nextUrl을 사용
     const id = pathname.split("/").pop(); // 마지막 세그먼트를 ID로 사용
     const isDone = searchParams.get("isDone"); // 쿼리 파라미터로 'isDone' 값을 가져오기
