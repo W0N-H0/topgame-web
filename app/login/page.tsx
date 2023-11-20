@@ -154,7 +154,10 @@ const Login: NextPage = () => {
         </form>
       ) : (
         <div>
-          <button onClick={handleLogout} className="font-bold text-[1.5em]">
+          <button
+            onClick={handleLogout}
+            className="font-bold text-[1.5em] bg-gray-600 text-white p-2 rounded-md"
+          >
             로그아웃
           </button>
         </div>
