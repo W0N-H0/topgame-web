@@ -2,9 +2,10 @@
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { useCursorTracker } from "@/hooks/useCursorTracker";
-import background from "@/public/mainBg.jpg";
+import Link from "next/link";
 import { LuPhoneCall } from "react-icons/lu";
 import { SiKakaotalk } from "react-icons/si";
+import { BsPhoneVibrate } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
@@ -51,7 +52,7 @@ const Main: React.FC = () => {
       id="home"
       ref={targetRef}
     >
-      <section className="flex flex-col absolute top-[24%] left-[15%] w-[70%] text-white">
+      <section className="flex justify-center flex-col absolute top-[22%] xs:top-[24%] left-[15%] w-[70%] text-white">
         <h1 className="text-[1.35rem] xs:text-[3.2rem] font-bold">
           고철, 비철, 기계철, 폐전선, 동 <br /> 철거전문
           <span className="font-normal"> 업체</span> <br />
@@ -89,12 +90,22 @@ const Main: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col xs:flex-row w-full justify-start text-[1.4rem] xs:text-[1.7rem]">
-          <div className="flex flex-col m-2 mt-10 xs:mt-5 font-bold">
+        <div className="flex flex-col xs:flex-row w-full justify-start text-[1.4rem] xs:text-[1.7rem] -m-3">
+          <div className="flex flex-col m-2 mt-20 xs:mt-5 font-bold">
             <span className="ml-2"> 매입문의 & 견적상담 </span>
             <div className="flex flex-col text-[1.3rem] font-normal">
               <motion.div {...hoverMotion} className="flex items-center m-2">
                 <LuPhoneCall className="mr-2" />
+                <a
+                  href="tel:+0319046189"
+                  onMouseEnter={() => handleHoverChange(true)}
+                  onMouseLeave={() => handleHoverChange(false)}
+                >
+                  031-904-6189
+                </a>
+              </motion.div>
+              <motion.div {...hoverMotion} className="flex items-center m-2">
+                <BsPhoneVibrate className="mr-2" />
                 <a
                   href="tel:+8201040078524"
                   onMouseEnter={() => handleHoverChange(true)}
@@ -103,6 +114,7 @@ const Main: React.FC = () => {
                   010-4007-8524
                 </a>
               </motion.div>
+
               <motion.div {...hoverMotion} className="flex items-center m-2">
                 <SiKakaotalk className="mr-2" />{" "}
                 <a
@@ -114,22 +126,28 @@ const Main: React.FC = () => {
                   탑개미자원
                 </a>
               </motion.div>
+              <div className="block xs:hidden font-bold mt-10 ml-2">
+                <Link href="#inquiry">
+                  온라인 상담신청 하기{" "}
+                  <span className="px-1 pt-2 text-[1.5rem]">⇀</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
       {/* 모바일에서 보여지는 배경 */}
-      <Image
+      {/* <Image
         src={background}
         alt="background"
         className="block xs:hidden absolute w-screen h-screen top-0 left-0 z-[-1] object-cover pointer-events-none"
         style={{ filter: "brightness(50%)" }}
         quality={100}
-      />
+      /> */}
       {/* 웹에서 보여지는 배경 */}
       <video
         ref={videoRef}
-        className="hidden xs:block absolute w-screen h-screen top-0 left-0 z-[-1] object-cover pointer-events-none"
+        className="absolute w-screen h-screen top-0 left-0 z-[-1] object-cover pointer-events-none"
         autoPlay
         muted
         loop
@@ -139,7 +157,6 @@ const Main: React.FC = () => {
         <source src={"/video.mp4"} type="video/mp4" />
       </video>
 
-      {/* 커스텀 커서 main 페이지 일시 보류 */}
       <div
         className={`maincursor hidden w-[6.5em] h-[6.5em] bg-gray-50 rounded-full uppercase lg:flex justify-center items-center font-bold absolute pointer-events-none duration-[60ms] ease-linear ${
           isHovered === true ? "opacity-25" : "opacity-100"
