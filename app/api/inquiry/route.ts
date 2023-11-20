@@ -52,10 +52,12 @@ export async function GET(request: NextRequest) {
 
     let latestData;
     if (limit) {
-      latestData = await Data.find().sort({ date: -1 }).limit(limit);
+      latestData = await Data.find()
+        .sort({ date: -1, isDone: -1 })
+        .limit(limit);
     } else {
       // limit 파라미터 없을 시 모든 데이터를 가져옴
-      latestData = await Data.find().sort({ date: -1 });
+      latestData = await Data.find().sort({ date: -1, isDone: -1 });
     }
 
     return NextResponse.json(latestData, { status: 200 });
