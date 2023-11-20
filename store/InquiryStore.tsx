@@ -36,7 +36,7 @@ export const useInquiryStore = create<InquiryState>(
     fetchData: async () => {
       set((state) => ({ ...state, loading: true })); // 비동기 작업 시작 전에 로딩 상태를 true로 설정
       try {
-        const response = await fetch("/api/inquiry");
+        const response = await fetch("/api/inquiry?limit=21");
         const data = (await response.json()) as InquiryData[];
         set((state) => ({ ...state, data, error: null, loading: false })); // 작업이 성공적으로 끝났을 때 로딩 상태를 false로 설정
       } catch (error) {

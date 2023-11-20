@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../db-connect";
 import Data from "./model";
 
@@ -42,12 +42,21 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   await dbConnect();
 
   try {
-    // 최신 데이터 15개를 가져오기 위해 find 메서드를 사용
-    const latestData = await Data.find().sort({ date: -1 }).limit(21);
+    // request.nextUrl에서 'limit' 파라미터를 가져옴
+    const limitParam = request.nextUrl.searchParams.get("limit");
+    const limit = limitParam ? Number(limitParam) : null;
+
+    let latestData;
+    if (limit) {
+      latestData = await Data.find().sort({ date: -1 }).limit(limit);
+    } else {
+      // limit 파라미터 없을 시 모든 데이터를 가져옴
+      latestData = await Data.find().sort({ date: -1 });
+    }
 
     return NextResponse.json(latestData, { status: 200 });
   } catch (error) {
