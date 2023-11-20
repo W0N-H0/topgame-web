@@ -15,7 +15,6 @@ interface InquiryListProps {
 
 const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
   const isMobile = useIsMobile();
-
   // 이름 가공을 위한 함수
   const maskName = (name: String) => {
     return name
@@ -60,7 +59,7 @@ const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
         <Swiper
           style={{ height: "368px", width: "100%" }}
           spaceBetween={10}
-          slidesPerView={7}
+          slidesPerView={6}
           direction="vertical"
           loop={true}
           autoplay={{
