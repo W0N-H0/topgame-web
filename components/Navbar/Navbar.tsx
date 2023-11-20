@@ -151,40 +151,39 @@ export default function Navbar() {
         </div>
       </motion.nav>
       {/* 메뉴 사이드바 추가 */}
-      {isMenuOpen && (
-        <motion.div
-          className="fixed top-0 right-0 h-full w-40 bg-gray-200 bg-opacity-95 bg-noise shadow-lg overflow-auto z-50"
-          initial="closed"
-          animate={isMenuOpen ? "open" : "closed"}
-          variants={MenuVariants}
-          transition={{ duration: 0.5 }}
-        >
-          <button
-            className="uppercase block lg:hidden font-bold p-4"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Close
-          </button>
 
-          <ul className="flex flex-col gap-y-12 px-4 py-8">
-            {navItems.map((item, index) => (
-              <motion.li
-                {...hoverMotion}
-                className="flex justify-center items-center cursor-pointer h-[25px] px-[1rem]"
-                key={index}
+      <motion.div
+        className="fixed top-0 right-0 h-full w-40 bg-gray-200 bg-opacity-95 bg-noise shadow-lg overflow-auto z-50"
+        initial="closed"
+        animate={isMenuOpen ? "open" : "closed"}
+        variants={MenuVariants}
+        transition={{ duration: 0.5 }}
+      >
+        <button
+          className="uppercase block lg:hidden font-bold p-4"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Close
+        </button>
+
+        <ul className="flex flex-col gap-y-12 px-4 py-8">
+          {navItems.map((item, index) => (
+            <motion.li
+              {...hoverMotion}
+              className="flex justify-center items-center cursor-pointer h-[25px] px-[1rem]"
+              key={index}
+            >
+              <Link
+                href={item.route}
+                className="navItem relative text-center font-medium"
+                onClick={() => setIsMenuOpen(false)}
               >
-                <Link
-                  href={item.route}
-                  className="navItem relative text-center font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
-      )}
+                {item.name}
+              </Link>
+            </motion.li>
+          ))}
+        </ul>
+      </motion.div>
     </>
   );
 }
