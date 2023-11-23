@@ -8,6 +8,7 @@ import { SiKakaotalk } from "react-icons/si";
 import { BsPhoneVibrate } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import CustomTypewriter from "./CustomTypewriter";
 
 const Main: React.FC = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
@@ -56,8 +57,9 @@ const Main: React.FC = () => {
         <h1 className="text-[1.35rem] xs:text-[3.2rem] font-bold">
           고철, 비철, 기계철, 폐전선, 동 <br /> 철거전문
           <span className="font-normal"> 업체</span> <br />
-          <span className="text-[2.5rem] xs:text-[3.7rem]">탑</span>개미자원
-          <span className="font-normal">입니다.</span>
+          <span className="font-normal">
+            <CustomTypewriter />
+          </span>
         </h1>
         <div className="flex justify-between">
           <h2 className="mt-10 xs:mt-3 text-[1.2rem] xs:text-[1.4rem]">
