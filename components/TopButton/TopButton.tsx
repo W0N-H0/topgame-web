@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { BiUpArrow } from "react-icons/bi";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TopButton = () => {
   const [isScrolling, setIsscrolling] = useState<boolean>(false);
+
   const hoverMotion = {
     transition: {
       type: "spring",
@@ -17,7 +18,7 @@ const TopButton = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
+      if (window.scrollY > 100) {
         setIsscrolling(true);
       } else {
         setIsscrolling(false);
@@ -35,17 +36,20 @@ const TopButton = () => {
   };
 
   return (
-    <motion.div
-      {...hoverMotion}
-      className={` ${
-        isScrolling
-          ? "fixed bottom-7 right-7 z-50 bg-red-500 rounded-full p-3 shadow-2xl"
-          : ""
-      }`}
-      onClick={handleButtonClick}
-    >
-      <BiUpArrow color="white" size={"23px"} />
-    </motion.div>
+    <AnimatePresence>
+      {isScrolling && (
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          {...hoverMotion}
+          className="fixed bottom-7 right-7 z-50 bg-red-500 rounded-full p-3 shadow-2xl"
+          onClick={handleButtonClick}
+        >
+          <BiUpArrow color="white" size={"23px"} />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
