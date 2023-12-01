@@ -118,9 +118,9 @@ const Main: React.FC = () => {
               </motion.div>
 
               <motion.div {...hoverMotion} className="flex items-center m-2">
-                <SiKakaotalk className="mr-2" />{" "}
+                <SiKakaotalk className="mr-2" />
                 <a
-                  href="https://naver.com"
+                  href="https://open.kakao.com/me/topgame"
                   target="_blank"
                   onMouseEnter={() => handleHoverChange(true)}
                   onMouseLeave={() => handleHoverChange(false)}
