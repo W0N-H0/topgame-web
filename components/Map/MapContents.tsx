@@ -11,7 +11,7 @@ const hoverMotion = {
     stiffness: 500,
     damping: 15,
   },
-  whileHover: { scale: 1.2 },
+  whileHover: { scale: 1.05 },
 };
 
 const MapContents: React.FC = () => {
@@ -41,26 +41,26 @@ const MapContents: React.FC = () => {
         <span className="text-[1.1em] lg:text-[1.35em] mb-3">
           상호명 : 탑개미자원
         </span>
-        <div className="flex text-[1em] lg:text-[1.2em]">
-          <span>경기도 고양시 일산서구 가좌동 605번지</span>
-          <motion.button
-            {...hoverMotion}
-            className="ml-3"
-            onClick={() => handleCopyClick(address1)}
-          >
+        <motion.div
+          {...hoverMotion}
+          className="flex text-[1em] lg:text-[1.2em]"
+          onClick={() => handleCopyClick(address1)}
+        >
+          <span>{address1}</span>
+          <button className="ml-3">
             <IoCopyOutline />
-          </motion.button>
-        </div>
-        <div className="flex text-[1em] lg:text-[1.2em]">
-          <span className="">경기도 고양시 일산서구 송파로 174-1</span>
-          <motion.button
-            {...hoverMotion}
-            className="ml-3"
-            onClick={() => handleCopyClick(address2)}
-          >
+          </button>
+        </motion.div>
+        <motion.div
+          {...hoverMotion}
+          className="flex text-[1em] lg:text-[1.2em]"
+          onClick={() => handleCopyClick(address2)}
+        >
+          <span className="">{address2}</span>
+          <button className="ml-3">
             <IoCopyOutline />
-          </motion.button>
-        </div>
+          </button>
+        </motion.div>
       </div>
 
       <div className="w-full md:w-[30vw] flex flex-col justify-end items-end">
