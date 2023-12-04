@@ -43,7 +43,7 @@ const MapContents: React.FC = () => {
         </span>
         <motion.div
           {...hoverMotion}
-          className="flex text-[1em] lg:text-[1.2em]"
+          className="flex text-[1em] lg:text-[1.2em] cursor-pointer"
           onClick={() => handleCopyClick(address1)}
         >
           <span>{address1}</span>
@@ -53,7 +53,7 @@ const MapContents: React.FC = () => {
         </motion.div>
         <motion.div
           {...hoverMotion}
-          className="flex text-[1em] lg:text-[1.2em]"
+          className="flex text-[1em] lg:text-[1.2em] cursor-pointer"
           onClick={() => handleCopyClick(address2)}
         >
           <span className="">{address2}</span>
