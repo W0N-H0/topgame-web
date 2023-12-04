@@ -8,9 +8,6 @@ const loader = {
   animate: {
     translateY: "-100vh",
   },
-  exit: {
-    translateY: "-100vh",
-  },
 };
 const loaderHeader = {
   initial: {
@@ -21,9 +18,6 @@ const loaderHeader = {
     opacity: 1,
     translateY: "-50vh",
   },
-  exit: {
-    translateY: "-50vh",
-  },
 };
 
 const Loader: React.FC<{ body: string }> = ({ body }) => {
@@ -32,7 +26,6 @@ const Loader: React.FC<{ body: string }> = ({ body }) => {
       variants={loader}
       initial="initial"
       animate="animate"
-      exit="exit"
       transition={{
         delay: 0.8,
         duration: 0.15,
@@ -55,7 +48,6 @@ const Loader: React.FC<{ body: string }> = ({ body }) => {
           variants={loaderHeader}
           initial="initial"
           animate="animate"
-          exit="exit"
           transition={{ duration: 0.6, ease: [0.42, 0, 0.58, 1], delay: 0.4 }}
           className="bg-white w-full h-[55%] absolute"
         />
