@@ -71,7 +71,7 @@ const MapContents: React.FC = () => {
           길찾기 버튼을 클릭하여 네이게이션을 이용해보세요.
         </span>
 
-        <button className="buttonEffect flex justify-center relative w-full xs:w-[30%] rounded-md border-[1px] p-2 border-black text-center text-[0.75em] md:text-[1em] font-bold overflow-y-hidden z-2 transition-colors delay-0 hover:delay-[175ms] duration-200 hover:text-white">
+        <button className="buttonEffect flex justify-center relative w-full xs:w-[30%] rounded-md border-[1px] p-2 border-black text-center text-[0.75em] md:text-[1em] font-bold overflow-hidden z-2 hover:delay-[175ms] duration-200 hover:text-white">
           <Link
             href="https://map.naver.com/p/directions/-/14105866.3745434,4536813.1560997,%EA%B2%BD%EA%B8%B0%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EC%9D%BC%EC%82%B0%EC%84%9C%EA%B5%AC%20%EC%86%A1%ED%8C%8C%EB%A1%9C%20174-1,,ADDRESS_POI/-/transit?c=19.00,0,0,0,dh"
             target="_blank"
