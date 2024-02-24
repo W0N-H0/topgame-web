@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { information } from "@/const/information.const";
 
 export type EmailData = {
@@ -22,7 +22,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   const rawBody = await request.text(); // 스트림을 읽어서 문자열로 변환
   const body = JSON.parse(rawBody); // 문자열을 파싱해서 객체로 변환
   const { name, contact, company, item, address, addressDetail } =
