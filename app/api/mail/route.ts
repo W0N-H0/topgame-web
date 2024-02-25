@@ -17,8 +17,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // true for 465, false for other ports
   auth: {
-    user: process.env.AUTH_USER, // 지메일 아이디
-    pass: process.env.AUTH_PASS, // 지메일 패스워드
+    user: process.env.NEXT_PUBLIC_AUTH_USER, // 지메일 아이디
+    pass: process.env.NEXT_PUBLIC_AUTH_PASS, // 지메일 패스워드
   },
 });
 
