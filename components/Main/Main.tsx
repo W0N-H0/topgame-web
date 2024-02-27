@@ -9,6 +9,7 @@ import { BsPhoneVibrate } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import CustomTypewriter from "./CustomTypewriter";
+import { information } from "@/const/information.const";
 
 const Main: React.FC = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
@@ -109,11 +110,11 @@ const Main: React.FC = () => {
               <motion.div {...hoverMotion} className="flex items-center m-2">
                 <BsPhoneVibrate className="mr-2" />
                 <a
-                  href="tel:+8201040078524"
+                  href={`tel:+82${information.phone}`}
                   onMouseEnter={() => handleHoverChange(true)}
                   onMouseLeave={() => handleHoverChange(false)}
                 >
-                  010-4007-8524
+                  {information.phone}
                 </a>
               </motion.div>
 

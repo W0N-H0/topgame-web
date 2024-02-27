@@ -7,6 +7,7 @@ import phoneCall from "@/public/phone_call.gif";
 import useIsMobile from "@/hooks/useIsMobile";
 import { InquiryData } from "@/store/InquiryStore";
 import loadingImg from "@/public/loading.gif";
+import { information } from "@/const/information.const";
 
 interface InquiryListProps {
   data: InquiryData[];
@@ -39,7 +40,7 @@ const InquiryList: React.FC<InquiryListProps> = ({ data, loading }) => {
           />
           <div className="ml-1 text-[0.5em] xl:text-[0.6em] flex flex-col justify-center items-center">
             <h2> 탑개미자원 고객센터</h2>
-            <a href="tel:+8201040078524">010-4007-8524</a>
+            <a href={`tel:+82${information.phone}`}>{information.phone}</a>
           </div>
         </div>
       </div>

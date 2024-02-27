@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { information } from "@/const/information.const";
 
 const Footer = () => {
   return (
@@ -18,7 +19,7 @@ const Footer = () => {
           <span className="hidden xs:block">　|　</span>
           <span>개인정보관리책임자: 고길현</span>
         </div>
-        <span>대표번호: 031-904-6189 　|　 010-4007-8524 </span>
+        <span>대표번호: 031-904-6189 　|　 {information.phone} </span>
         Copyright © 탑개미자원 All rights reserved.
       </div>
     </footer>
