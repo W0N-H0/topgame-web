@@ -3,6 +3,7 @@ import DaumPostcode from "react-daum-postcode";
 import useInput from "@/hooks/useInput";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
+import { EmailData } from "@/app/api/mail/route";
 
 const hoverMotion = {
   transition: {
@@ -39,6 +40,36 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
   const [item, handleItemChange, clearItem] = useInput("");
   const [detailAddress, handleDetailAddressChange, clearDetailAddress] =
     useInput("");
+
+  // 이메일 전송 함수
+  const sendEmail = async (data: EmailData) => {
+    const emailData = {
+      name: data.name,
+      contact: data.contact,
+      company: data.company,
+      item: data.item,
+      address: data.address,
+      addressDetail: data.addressDetail,
+    };
+
+    try {
+      const response = await fetch("/api/mail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(emailData),
+      });
+
+      if (response.ok) {
+        console.log("Email sent successfully");
+      } else {
+        console.error("Failed to send email");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
+  };
 
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -95,6 +126,9 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
         clearItem();
         clearDetailAddress();
         setSelectedAddress("");
+        if (responseData) {
+          sendEmail(formData);
+        }
       } else {
         toast.error("상담신청 중 에러가 발생하였습니다.");
         console.error("Error submitting form:", response.statusText);
